@@ -155,13 +155,13 @@ function ChatDrawer(props: {
   const { isSearching } = isDrawerSearching(debouncedSearchQuery);
   const groupingComponent = React.useMemo(() => (
     <Dropdown>
-      <MenuButton
+      {/* <MenuButton
         aria-label='View options'
         slots={{ root: IconButton }}
         slotProps={{ root: { size: 'sm' } }}
       >
         <MoreVertIcon />
-      </MenuButton>
+      </MenuButton> */}
 
       {!isSearching ? (
         // Search/Filter default menu: Grouping, Filtering, ...

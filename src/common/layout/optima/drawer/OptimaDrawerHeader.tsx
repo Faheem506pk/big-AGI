@@ -32,14 +32,17 @@ export const OptimaDrawerHeader = (props: {
     }}
   >
 
-    {props.children || <IconButton disabled />}
+    {/* {props.children || <IconButton disabled />} */}
 
-    <Typography level='title-md'>
+    <Typography level='title-md' sx={{ fontWeight: 'bold', marginLeft: "12px" }}>
       {props.title}
     </Typography>
-
+    <Box  >
     <IconButton aria-label='Close Drawer' size='sm' onClick={props.onClose}>
       <CloseRoundedIcon />
     </IconButton>
+    {props.children }
+
+    </Box>
 
   </Box>;

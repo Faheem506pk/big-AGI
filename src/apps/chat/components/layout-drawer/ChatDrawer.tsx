@@ -27,6 +27,7 @@ import { getIsMobile } from '~/common/components/useMatchMedia';
 import { optimaCloseDrawer } from '~/common/layout/optima/useOptima';
 import { themeScalingMap, themeZIndexOverMobileDrawer } from '~/common/app.theme';
 import { useUIPreferencesStore } from '~/common/state/store-ui';
+import SearchIcon from '@mui/icons-material/Search';
 
 import { ChatDrawerItemMemo, FolderChangeRequest } from './ChatDrawerItem';
 import { ChatFolderList } from './folders/ChatFolderList';
@@ -249,16 +250,39 @@ function ChatDrawer(props: {
     toggleFilterHasDocFragments, toggleFilterHasImageAssets, toggleFilterHasStars, toggleShowPersonaIcons, toggleShowRelativeSize,
   ]);
 
+  const [isSearchVisible, setIsSearchVisible] = React.useState(false);
+  
+  const handleSearchToggle = () => {
+    setIsSearchVisible(prev => !prev);
+  };
 
   return <>
 
     {/* Drawer Header */}
     <OptimaDrawerHeader title='Chats' onClose={optimaCloseDrawer}>
-      <Tooltip title={enableFolders ? 'Hide Folders' : 'Use Folders'}>
+      {/* <Tooltip title={enableFolders ? 'Hide Folders' : 'Use Folders'}>
         <IconButton size='sm' onClick={toggleEnableFolders}>
           {enableFolders ? <FoldersToggleOn /> : <FoldersToggleOff />}
         </IconButton>
-      </Tooltip>
+      </Tooltip> */}
+      <IconButton onClick={handleSearchToggle}>
+          <SearchIcon />
+        </IconButton>
+      <Button
+          // variant='plain'
+          variant={disableNewButton ? undefined : 'plain'}
+          disabled={disableNewButton}
+          onClick={handleButtonNew}
+          sx={{
+            justifyContent: 'flex-start',
+            padding: '0px 0.75rem',
+            borderRadius: 'sm',
+          }}
+        >
+          <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
+          
+        </Button>
+        
     </OptimaDrawerHeader>
 
     {/* Folders List (shrink at twice the rate as the Titles) */}
@@ -297,6 +321,7 @@ function ChatDrawer(props: {
       <Box sx={{ display: 'flex', flexDirection: 'column', m: 2, gap: 2 }}>
 
         {/* Search Input Field */}
+        {isSearchVisible && (
         <DebouncedInputMemo
           minChars={2}
           onDebounce={setDebouncedSearchQuery}
@@ -305,31 +330,33 @@ function ChatDrawer(props: {
           aria-label='Search'
           endDecorator={groupingComponent}
         />
+      )}
 
         {/* New Chat Button */}
-        <Button
-          // variant='outlined'
-          variant={disableNewButton ? undefined : 'soft'}
+        {/* <Button
+          variant='plain'
+          // variant={disableNewButton ? undefined : 'plain'}
           disabled={disableNewButton}
           onClick={handleButtonNew}
           sx={{
             // ...PageDrawerTallItemSx,
-            justifyContent: 'flex-start',
-            padding: '0px 0.75rem',
+            // justifyContent: 'flex-start',
+            // padding: '0px 0.75rem',
 
             // style
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-            borderRadius: 'sm',
-            '--ListItemDecorator-size': 'calc(2.5rem - 1px)', // compensate for the border
+            // border: '1px solid',
+            // borderColor: 'neutral.outlinedBorder',
+           // borderRadius: 'sm',
+            // '--ListItemDecorator-size': 'calc(2.5rem - 1px)',
+             // compensate for the border
             // backgroundColor: 'background.popup',
             // boxShadow: (disableNewButton || props.isMobile) ? 'none' : 'xs',
             // transition: 'box-shadow 0.2s',
           }}
         >
           <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
-          New chat
-        </Button>
+          
+        </Button> */}
 
       </Box>
 
@@ -381,13 +408,13 @@ function ChatDrawer(props: {
       <ListDivider sx={{ my: 0 }} />
 
       {/* Bottom commands */}
-      <Box sx={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+      {/* <Box sx={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
         <ListItemButton onClick={props.onConversationsImportDialog} sx={{ flex: 1 }}>
           <ListItemDecorator>
             <FileDownloadOutlinedIcon />
           </ListItemDecorator>
           Import
-          {/*<OpenAIIcon sx={{  ml: 'auto' }} />*/}
+        
         </ListItemButton>
 
         <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsExport} sx={{ flex: 1 }}>
@@ -396,14 +423,14 @@ function ChatDrawer(props: {
           </ListItemDecorator>
           Export
         </ListItemButton>
-      </Box>
+      </Box> */}
 
-      <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsDeleteFiltered}>
+      {/* <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsDeleteFiltered}>
         <ListItemDecorator>
           <DeleteOutlineIcon />
         </ListItemDecorator>
         Delete {filteredChatsCount >= 2 ? `all ${filteredChatsCount} chats` : 'chat'}
-      </ListItemButton>
+      </ListItemButton> */}
 
     </OptimaDrawerList>
 

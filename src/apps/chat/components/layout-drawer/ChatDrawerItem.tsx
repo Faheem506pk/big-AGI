@@ -271,7 +271,7 @@ function ChatDrawerItem(props: {
             onEdit={handleTitleEditChange}
             onCancel={handleTitleEditCancel}
             sx={{
-              flexGrow: 1,
+              flexGrow: 0,
               ml: -1.5,
               mr: -0.5,
             }}
@@ -368,7 +368,7 @@ function ChatDrawerItem(props: {
         }),
       }}
     >
-      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, pl: 'calc(var(--ListItem-paddingX) )' }}>
+      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, pl: 'calc(var(--ListItem-paddingX) )', pr:"4px"}}>
         {/* Title row */}
         <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '0.1rem', alignItems: 'center' }}>
           {titleRowComponent}
@@ -378,15 +378,15 @@ function ChatDrawerItem(props: {
               <MenuButton aria-label="View options" slots={{ root: IconButton }} slotProps={{ root: { size: 'sm' } }}>
                 <MoreVertIcon />
               </MenuButton>
-              <Menu placement='bottom-start' sx={{ minWidth: 180,  /* need to be on top of the Modal on Mobile */ }}>
+              <Menu placement='bottom-start' sx={{ minWidth: 20,  /* need to be on top of the Modal on Mobile */ }}>
          
-          <MenuItem >
+          {/* <MenuItem >
           <Tooltip arrow disableInteractive title="Rename">
                   <FadeInButton size="sm" disabled={isEditingTitle || isAutoEditingTitle} onClick={handleTitleEditBegin}>
                     <EditRoundedIcon />
                   </FadeInButton>
                 </Tooltip>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem >
           {deleteArmed && (
               <Tooltip color="danger" arrow disableInteractive title="Confirm Deletion">
@@ -513,6 +513,7 @@ function ChatDrawerItem(props: {
       <ListItemButton
         onClick={handleConversationActivate}
         sx={{
+          marginLeft:"1px",
           border: 'none', // there's a default border of 1px and invisible.. hmm
           position: 'relative', // for the progress bar
           borderRadius: 'sm', // OPTIMA_NAV_RADIUS, // sync with the optima radius, because they need to match

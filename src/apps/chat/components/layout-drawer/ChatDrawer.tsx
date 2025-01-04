@@ -296,7 +296,7 @@ function ChatDrawer(props: {
     {/*    overflow: 'hidden',*/}
     {/*  },*/}
     {/*}}>*/}
-    {enableFolders && (
+    {/* {enableFolders && (
       <ChatFolderList
         folders={allFolders}
         contentScaling={contentScaling}
@@ -309,13 +309,13 @@ function ChatDrawer(props: {
           p: 2,
         }}
       />
-    )}
+    )} */}
     {/*</Box>*/}
 
     {/* Chats List */}
     <OptimaDrawerList variant='plain' noTopPadding noBottomPadding tallRows>
 
-      {enableFolders && <ListDivider sx={{ mb: 0 }} />}
+      {/* {enableFolders && <ListDivider sx={{ mb: 0 }} />} */}
 
       {/* Search / New Chat */}
       <Box sx={{ display: 'flex', flexDirection: 'column', m: 2, gap: 2 }}>

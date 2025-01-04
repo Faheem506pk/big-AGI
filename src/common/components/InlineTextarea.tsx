@@ -59,7 +59,7 @@ export function InlineTextarea(props: {
           enterKeyHint: enterIsNewline ? 'enter' : 'done',
         },
       }}
-      sx={props.sx}
+      sx={props.sx }
     />
   );
 }

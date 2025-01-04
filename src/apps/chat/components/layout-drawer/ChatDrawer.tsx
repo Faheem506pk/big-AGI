@@ -258,7 +258,27 @@ function ChatDrawer(props: {
         <IconButton size='sm' onClick={toggleEnableFolders}>
           {enableFolders ? <FoldersToggleOn /> : <FoldersToggleOff />}
         </IconButton>
-      </Tooltip>
+      </Tooltip> */}
+      <IconButton onClick={handleSearchToggle} sx={{
+           
+           borderRadius: 'sm',
+         }}>
+          <SearchIcon sx={{ fontSize: '20px', fontWeight: 'bold' }}/>
+        </IconButton>
+      <IconButton
+          // variant='plain'
+          variant={disableNewButton ? undefined : 'plain'}
+          disabled={disableNewButton}
+          onClick={handleButtonNew}
+          sx={{
+           
+            borderRadius: 'sm',
+          }}
+        >
+         <AddIcon sx={{ fontSize: '20px' , fontWeight: 'bold'}} />
+          
+        </IconButton>
+        
     </OptimaDrawerHeader>
 
     {/* Folders List (shrink at twice the rate as the Titles) */}

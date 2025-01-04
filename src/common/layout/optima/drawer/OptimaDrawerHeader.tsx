@@ -10,36 +10,34 @@ export const OptimaDrawerHeader = (props: {
   onClose: () => void,
   sx?: SxProps,
   children?: React.ReactNode,
-}) =>
-  <Box
-    // variant='soft'
-    // invertedColors
-    sx={{
-      minHeight: 'var(--AGI-Nav-width)',
-      px: 1,
+}) =>{
+  const [isHovered, setIsHovered] = React.useState(false);
 
-      // style
-      backgroundColor: 'background.popup',
-      // borderLeft: 'none',
-      // borderRight: 'none',
-      // borderTop: 'none',
-      // borderTopRightRadius: 'var(--AGI-Optima-Radius)',
-
-      // layout
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    }}
-  >
-
-    {props.children || <IconButton disabled />}
-
-    <Typography level='title-md'>
-      {props.title}
-    </Typography>
-
-    <IconButton aria-label='Close Drawer' size='sm' onClick={props.onClose}>
-      <CloseRoundedIcon />
-    </IconButton>
-
-  </Box>;
+  return (
+    <Box
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      sx={{
+        minHeight: 'var(--AGI-Nav-width)',
+        px: 1,
+        backgroundColor: 'background.popup',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        ...props.sx,
+      }}
+    >
+      <Typography level="title-md" sx={{ fontWeight: 'bold', marginLeft: '12px' }}>
+        {props.title}
+      </Typography>
+      <Box>
+        {isHovered && (
+          <IconButton aria-label="Close Drawer" size="sm" onClick={props.onClose}>
+            <CloseRoundedIcon />
+          </IconButton>
+        )}
+        {props.children}
+      </Box>
+    </Box>
+  );
+};

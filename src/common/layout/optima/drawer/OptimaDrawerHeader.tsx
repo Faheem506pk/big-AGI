@@ -27,7 +27,7 @@ export const OptimaDrawerHeader = (props: {
         ...props.sx,
       }}
     >
-      <Typography level="title-lg" sx={{ fontWeight: 'bold', marginLeft: '12px' }}>
+      <Typography level="title-lg" sx={{ fontWeight: 'bold', marginLeft: '12px', fontSize: '20px' }}>
         {props.title}
       </Typography>
       <Box>

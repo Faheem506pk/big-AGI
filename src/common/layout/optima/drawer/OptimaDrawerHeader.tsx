@@ -33,7 +33,7 @@ export const OptimaDrawerHeader = (props: {
       <Box>
         {isHovered && (
           <IconButton aria-label="Close Drawer" size="sm" onClick={props.onClose}>
-            <CloseRoundedIcon />
+            <CloseRoundedIcon sx={{ fontSize: '22px'}}/>
           </IconButton>
         )}
         {props.children}

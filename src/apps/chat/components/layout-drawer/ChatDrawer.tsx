@@ -269,7 +269,7 @@ function ChatDrawer(props: {
            
            borderRadius: 'sm',
          }}>
-          <SearchIcon sx={{ fontSize: '20px', fontWeight: 'bold' }}/>
+          <SearchIcon sx={{ fontSize: '22px', fontWeight: 'bold' }}/>
         </IconButton>
       <IconButton
           // variant='plain'
@@ -281,7 +281,7 @@ function ChatDrawer(props: {
             borderRadius: 'sm',
           }}
         >
-         <AddIcon sx={{ fontSize: '20px' , fontWeight: 'bold'}} />
+         <AddIcon sx={{ fontSize: '22px' , fontWeight: 'bold'}} />
           
         </IconButton>
         

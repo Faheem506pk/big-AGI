@@ -22,6 +22,7 @@ import TextsmsIcon from '@mui/icons-material/Textsms';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
+import ExtensionIcon from '@mui/icons-material/Extension';
 // Link icons
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { DiscordIcon } from '~/common/components/icons/3rdparty/DiscordIcon';
@@ -70,7 +71,7 @@ export interface NavItemApp extends ItemBase {
 
 export interface NavItemModal extends ItemBase {
   type: 'modal',
-  overlayId: 'settings' | 'models',
+  overlayId: 'settings' | 'models' | 'extension',
 }
 
 export interface NavItemExtLink extends ItemBase {
@@ -241,6 +242,12 @@ export const navItems: {
 
   // External links
   links: [
+    {
+      type: 'extLink',
+      name: 'Extension',
+      icon: ExtensionIcon,
+      href: 'https://google.com',
+    },
     // {
     //   type: 'extLink',
     //   name: 'X',
@@ -253,12 +260,12 @@ export const navItems: {
     //   icon: DiscordIcon,
     //   href: Brand.URIs.SupportInvite,
     // },
-    {
-      type: 'extLink',
-      name: 'GitHub',
-      icon: GitHubIcon,
-      href: Brand.URIs.OpenRepo,
-    },
+    // {
+    //   type: 'extLink',
+    //   name: 'GitHub',
+    //   icon: GitHubIcon,
+    //   href: Brand.URIs.OpenRepo,
+    // },
   ],
 
 };

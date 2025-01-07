@@ -191,7 +191,7 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
       </DesktopNavGroupBox>
 
       <DesktopNavGroupBox sx={bottomGroupSx}>
-        {/* {navExtLinkItems} */}
+        {navExtLinkItems}
         {navModalItems}
         {authUserButton}
       </DesktopNavGroupBox>

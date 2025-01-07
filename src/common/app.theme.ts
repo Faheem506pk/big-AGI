@@ -131,6 +131,18 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
         },
       },
     },
+    
+    JoyTextarea: {
+      styleOverrides: {
+        root: {
+          '--Textarea-focused': 'none',
+          '--Textarea-focusedThickness': '0px',
+          '--Textarea-focusedHighlight': 'none',
+          boxShadow: 'none', // Remove any shadow effect
+        },
+      },
+    },
+    
 
     /**
      * Switch: increase the size of the thumb, to a default iconButton

@@ -51,7 +51,7 @@ function ButtonAttachScreenCapture(props: { isMobile?: boolean, onAttachScreenCa
       }
     >
       <Button
-        fullWidth
+        
         variant={capturing ? 'solid' : 'plain'}
         color={!!error ? 'danger' : 'neutral'}
         onClick={handleTakeScreenCapture}

@@ -241,6 +241,12 @@ export const navItems: {
 
   // External links
   links: [
+    {
+      type: 'extLink',
+      name: 'Extension',
+      icon: ExtensionIcon,
+      href: Brand.URIs.Extension,
+    },
     // {
     //   type: 'extLink',
     //   name: 'X',

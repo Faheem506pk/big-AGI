@@ -25,6 +25,7 @@ export const Brand = {
     OpenProject: 'https://github.com/AlphabaseOfficial/alpha-AGI',
     SupportInvite: '#',
     // Twitter: 'https://www.twitter.com/enricoros',
+    Extension: 'https://chromewebstore.google.com/detail/zaplead/dhikhoidbejcgjohpbicofehjfkbhpan',
     PrivacyPolicy: 'https://alphabase.co/privacy',
     TermsOfService: 'https://alphabase.co/terms',
   },

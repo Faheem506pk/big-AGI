@@ -61,8 +61,8 @@ function TokenProgressbar(props: {
     <TokenTooltip color={color} message={props.direct ? null : message}>
 
       <Box sx={{
-        position: 'absolute', left: 1, right: 1, bottom: 1, height: containerHeight,
-        overflow: 'hidden', borderBottomLeftRadius: 5, borderBottomRightRadius: 5,
+        position: 'absolute', left: 1, right: 1, bottom: -5, height: containerHeight,
+        overflow: 'hidden', borderRadius: 5, borderBottomRightRadius: 5,
       }}>
 
         {/* History */}

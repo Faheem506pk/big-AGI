@@ -246,7 +246,7 @@ export const navItems: {
       type: 'extLink',
       name: 'Extension',
       icon: ExtensionIcon,
-      href: 'https://google.com',
+      href: Brand.URIs.Extension,
     },
     // {
     //   type: 'extLink',

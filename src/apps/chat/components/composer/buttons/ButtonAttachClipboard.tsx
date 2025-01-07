@@ -23,7 +23,7 @@ function ButtonAttachClipboard(props: { isMobile?: boolean, onClick: () => void 
     </IconButton>
   ) : (
     <Tooltip disableInteractive variant='solid' placement='top-start' title={pasteClipboardLegend}>
-      <Button fullWidth variant='plain' color='neutral' startDecorator={<ContentPasteGoIcon />} onClick={props.onClick}
+      <Button  variant='plain' color='neutral' startDecorator={<ContentPasteGoIcon />} onClick={props.onClick}
               sx={{ justifyContent: 'flex-start' }}>
         Paste
       </Button>

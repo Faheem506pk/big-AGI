@@ -163,7 +163,7 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
   },
 });
 
-export const themeBgApp = 'background.level1';
+export const themeBgApp = 'background.surface';
 export const themeBgAppDarker = 'background.level2';
 export const themeBgAppChatComposer = 'background.surface';
 

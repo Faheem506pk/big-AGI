@@ -91,7 +91,7 @@ import { useComposerDragDrop } from './useComposerDragDrop';
 const zIndexComposerOverlayMic = 10;
 
 const paddingBoxSx: SxProps = {
-  p: { xs: 1, md: 2 },
+  p: 0,
 };
 
 const minimizedSx: SxProps = {
@@ -803,6 +803,7 @@ export function Composer(props: {
     () => ({
       // basically a position:relative to enable the inner drop area
       ...dragContainerSx,
+      
       // This used to be in the outer box, but we put it here instead
       // p: { xs: 1, md: 2 },
     }),
@@ -814,9 +815,7 @@ export function Composer(props: {
       aria-label="User Message"
       component="section"
       sx={{
-        mx: '60px',
-        mb: '20px',
-        borderRadius: '20px',
+        
         ...props.sx,
       }}
     >
@@ -826,7 +825,11 @@ export function Composer(props: {
         <Grid container onDragEnter={handleContainerDragEnter} onDragStart={handleContainerDragStart} spacing={{ xs: 1, md: 2 }} sx={stableGridSx}>
           {/* [Mobile: top, Desktop: left] */}
           <Grid xs={12} md={12}>
-            <Box sx={{ display: 'flex', alignItems: 'stretch' }}>
+            <Box sx={{ display: 'flex', alignItems: 'stretch' , 
+        backgroundColor: 'background.level1', 
+        borderRadius: '20px',
+        mx: '60px',
+        mb: '20px',}}>
               {/* [Mobile, Col1] Mic, Insert Multi-modal content, and Broadcast buttons */}
               {isMobile && (
                 <Box sx={{ flexGrow: 0, display: 'grid', gap: 1 }}>
@@ -926,14 +929,16 @@ export function Composer(props: {
                         textarea: {
                           enterKeyHint: enterIsNewline ? 'enter' : 'send',
                           sx: {
-                            ...(recognitionState.isAvailable && { pr: { md: 5 } }),
+                            ...(recognitionState.isAvailable && { pr: { md: 5 }, p: { md: 0.5 } }),
                             // mb: 0.5, // no need; the outer container already has enough p (for TokenProgressbar)
                           },
                           ref: composerTextAreaRef,
                         },
                       }}
                       sx={{
-                        // backgroundColor: 'background.level1',
+                        p: 1,
+                        borderRadius: '20px',
+                        backgroundColor: 'background.level1',
                         // '&:focus-within': { backgroundColor: 'background.popup', '.within-composer-focus': { backgroundColor: 'background.popup' } },
                         border: 'none', // Removes the border
                         lineHeight: lineHeightTextareaMd,
@@ -1039,7 +1044,7 @@ export function Composer(props: {
                   )}
 
                   {/* [Desktop, Col1] Insert Multi-modal content buttons */}
-                  {isDesktop && showChatAttachments && (
+                  {isDesktop  && (
                     <>
                       <Box
                         sx={{
@@ -1058,6 +1063,8 @@ export function Composer(props: {
                         {/*  Attach*/}
                         {/*</FormHelperText>*/}
                         <Box>
+                        {showChatAttachments &&( 
+                          <>
                           {/* Responsive Open Files button */}
                           <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} multiple />
 
@@ -1080,9 +1087,11 @@ export function Composer(props: {
                               onClick={handleSendTextBeamClicked}
                             />
                           )}
+                          </>
+                        )}
                         </Box>
 
-                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end' , mr:1}}>
                           {/* [desktop] Call secondary button */}
                           {showChatExtras && <ButtonCallMemo disabled={noConversation || noLLM || assistantAbortible} onClick={handleCallClicked} />}
 
@@ -1160,7 +1169,7 @@ export function Composer(props: {
                     </>
                   )}
 
-                  {!showChatInReferenceTo && tokenLimit > 0 && (tokensComposer > 0 || tokensHistory + tokensResponseMax > 0) && (
+                  {/* {!showChatInReferenceTo && tokenLimit > 0 && (tokensComposer > 0 || tokensHistory + tokensResponseMax > 0) && (
                     <TokenProgressbarMemo
                       chatPricing={tokenChatPricing}
                       direct={tokensComposer}
@@ -1168,7 +1177,7 @@ export function Composer(props: {
                       responseMax={tokensResponseMax}
                       limit={tokenLimit}
                     />
-                  )}
+                  )} */}
 
                   {/* overlay: Mic */}
                   {micIsRunning && (

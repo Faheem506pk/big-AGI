@@ -24,11 +24,11 @@ const mobileSx: SxProps = {
 };
 
 const desktopSx: SxProps = {
-  '--Button-gap': '1rem',
-  backgroundColor: 'background.popup',
+  // '--Button-gap': '1rem',
+  // backgroundColor: 'background.popup',
   // border: '1px solid',
   // borderColor: 'primary.outlinedBorder',
-  boxShadow: '0 4px 16px -4px rgb(var(--joy-palette-primary-mainChannel) / 10%)',
+  // boxShadow: '0 4px 16px -4px rgb(var(--joy-palette-primary-mainChannel) / 10%)',
   animation: `${animationEnterBelow} 0.1s ease-out`,
 };
 
@@ -43,12 +43,12 @@ function ButtonBeam(props: {
   onClick: () => void,
 }) {
   return props.isMobile ? (
-    <IconButton variant='soft' color={props.color ?? 'primary'} disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
+    <IconButton  disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
       <ChatBeamIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive variant='solid' arrow placement='right' title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
-      <Button variant='soft' color={props.color ?? 'primary'} disabled={props.disabled} onClick={props.onClick} endDecorator={<ChatBeamIcon />} sx={desktopSx}>
+    <Tooltip disableInteractive  arrow placement='right' title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
+      <Button variant='plain'  color='neutral' disabled={props.disabled} onClick={props.onClick} startDecorator={<ChatBeamIcon />} sx={desktopSx}>
         Beam
       </Button>
     </Tooltip>

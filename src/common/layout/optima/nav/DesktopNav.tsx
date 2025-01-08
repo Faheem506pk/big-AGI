@@ -17,7 +17,6 @@ import { DesktopNavGroupBox, DesktopNavIcon, navItemClasses } from './DesktopNav
 import { InvertedBar, InvertedBarCornerItem } from '../InvertedBar';
 import { optimaOpenModels, optimaOpenPreferences, optimaToggleDrawer, useOptimaDrawerOpen, useOptimaModelsModalsState } from '../useOptima';
 
-
 const desktopNavBarSx: SxProps = {
   zIndex: themeZIndexDesktopNav,
 };
@@ -32,23 +31,18 @@ const navItemsDividerSx: SxProps = {
   mx: 'auto',
 };
 
-
-export function DesktopNav(props: { component: React.ElementType, currentApp?: NavItemApp }) {
-
+export function DesktopNav(props: { component: React.ElementType; currentApp?: NavItemApp }) {
   // external state
   const isDrawerOpen = useOptimaDrawerOpen();
   const { showModels, showPreferences } = useOptimaModelsModalsState();
   const noLLMs = !useHasLLMs();
 
-
   // show/hide the pane when clicking on the logo
   const appUsesDrawer = !props.currentApp?.hideDrawer;
   const logoButtonTogglesPane = (appUsesDrawer && !isDrawerOpen) || isDrawerOpen;
 
-
   // App items
   const navAppItems = React.useMemo(() => {
-
     // group apps into visible (rendered as of now) and overflow (rendered with a dropdown menu)
     let crossedDivider = false;
     const visibleApps: NavItemApp[] = [];
@@ -56,10 +50,8 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
 
     navItems.apps.forEach((app, index) => {
       if (checkVisibileIcon(app, false, props.currentApp)) {
-        if (!crossedDivider || app === props.currentApp)
-          visibleApps.push(app);
-        else
-          overflowApps.push(app);
+        if (!crossedDivider || app === props.currentApp) visibleApps.push(app);
+        else overflowApps.push(app);
         crossedDivider = crossedDivider || checkDivider(app);
       }
     });
@@ -70,8 +62,7 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
       const isDrawerable = isActive && !app.hideDrawer;
       const isPaneOpen = isDrawerable && isDrawerOpen;
 
-      if (checkDivider(app))
-        return <Divider key={'app-sep-' + appIdx} sx={navItemsDividerSx} />;
+      if (checkDivider(app)) return <Divider key={'app-sep-' + appIdx} sx={navItemsDividerSx} />;
 
       return (
         <Tooltip key={'n-m-' + app.route.slice(1)} disableInteractive enterDelay={600} title={app.name + (app.isDev ? ' [DEV]' : '')}>
@@ -90,26 +81,26 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
     // Overflow dropdown menu
     if (overflowApps.length) {
       components.push(
-        <Dropdown key='n-app-overflow'>
-          <Tooltip disableInteractive enterDelay={600} title='More Apps'>
+        <Dropdown key="n-app-overflow">
+          <Tooltip disableInteractive enterDelay={600} title="More Apps">
             <MenuButton slots={{ root: DesktopNavIcon }} slotProps={{ root: { className: navItemClasses.typeApp } }}>
               <MoreHorizIcon />
             </MenuButton>
           </Tooltip>
           <Menu
-            variant='outlined'
-            placement='right-start'
+            variant="outlined"
+            placement="right-start"
             popperOptions={{ modifiers: [{ name: 'offset', options: { offset: [0, -2] } }] }}
             sx={{ minWidth: 220 }}
           >
-            {overflowApps.map((app, appIdx) =>
+            {overflowApps.map((app, appIdx) => (
               <MenuItem key={'nav-app-extra-' + appIdx} onClick={() => Router.push(app.landingRoute || app.route)}>
                 <ListItemDecorator>
                   <app.icon />
                 </ListItemDecorator>
                 {app.name + (app.isDev ? ' [DEV]' : '')}
-              </MenuItem>,
-            )}
+              </MenuItem>
+            ))}
           </Menu>
         </Dropdown>,
       );
@@ -117,10 +108,9 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
     return components;
   }, [isDrawerOpen, props.currentApp]);
 
-
   // External link items
   const navExtLinkItems = React.useMemo(() => {
-    return navItems.links.map((item, index) =>
+    return navItems.links.map((item, index) => (
       <BringTheLove
         key={'nav-ext-' + item.name}
         asIcon
@@ -131,17 +121,15 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
           p: 1,
           mb: index > 0 ? 1 : 0,
         }}
-      />,
-    );
+      />
+    ));
   }, []);
-
 
   // Modal items
   const navModalItems = React.useMemo(() => {
-    return navItems.modals.map(item => {
-
+    return navItems.modals.map((item) => {
       // map the overlayId to the corresponding state and action
-      const stateActionMap: { [key: string]: { isActive: boolean, showModal: (event: React.MouseEvent) => void } } = {
+      const stateActionMap: { [key: string]: { isActive: boolean; showModal: (event: React.MouseEvent) => void } } = {
         settings: { isActive: showPreferences, showModal: () => optimaOpenPreferences(/* avoid passing an event as param */) },
         models: { isActive: showModels, showModal: () => optimaOpenModels() },
         0: { isActive: false, showModal: () => console.log('Action missing for ', item.overlayId) },
@@ -158,35 +146,28 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
             onClick={showModal}
             className={`${navItemClasses.typeLinkOrModal} ${isActive ? navItemClasses.active : ''} ${isAttractive ? navItemClasses.attractive : ''}`}
           >
-            {(isActive && item.iconActive) ? <item.iconActive /> : <item.icon />}
+            {isActive && item.iconActive ? <item.iconActive /> : <item.icon />}
           </DesktopNavIcon>
         </Tooltip>
       );
     });
   }, [noLLMs, showModels, showPreferences]);
 
-
   return (
-    <InvertedBar
-      id='desktop-nav'
-      component={props.component}
-      direction='vertical'
-      sx={desktopNavBarSx}
-    >
+    <InvertedBar id="desktop-nav" component={props.component} direction="vertical" sx={desktopNavBarSx}>
+      <DesktopNavGroupBox sx={bottomGroupSx}>
+        <InvertedBarCornerItem>
+          <Tooltip disableInteractive title={isDrawerOpen ? 'Close Drawer' /* for Aria reasons */ : 'Open Drawer'}>
+            <DesktopNavIcon
+              disabled={!logoButtonTogglesPane}
+              onPointerDown={logoButtonTogglesPane ? optimaToggleDrawer : undefined}
+              className={navItemClasses.typeMenu}
+            >
+              {logoButtonTogglesPane ? <MenuIcon /> : <AgiSquircleIcon inverted sx={{ color: 'white' }} />}
+            </DesktopNavIcon>
+          </Tooltip>
+        </InvertedBarCornerItem>
 
-      <InvertedBarCornerItem>
-        <Tooltip disableInteractive title={isDrawerOpen ? 'Close Drawer' /* for Aria reasons */ : 'Open Drawer'}>
-          <DesktopNavIcon
-            disabled={!logoButtonTogglesPane}
-            onPointerDown={logoButtonTogglesPane ? optimaToggleDrawer : undefined}
-            className={navItemClasses.typeMenu}
-          >
-            {logoButtonTogglesPane ? <MenuIcon /> : <AgiSquircleIcon inverted sx={{ color: 'white' }} />}
-          </DesktopNavIcon>
-        </Tooltip>
-      </InvertedBarCornerItem>
-
-      <DesktopNavGroupBox>
         {navAppItems}
       </DesktopNavGroupBox>
 
@@ -195,7 +176,6 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
         {navModalItems}
         {authUserButton}
       </DesktopNavGroupBox>
-
     </InvertedBar>
   );
 }

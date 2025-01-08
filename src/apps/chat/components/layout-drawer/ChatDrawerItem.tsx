@@ -1,6 +1,24 @@
 import * as React from 'react';
 
-import { Avatar, Box, Dropdown, IconButton, ListItem, ListItemButton, ListItemDecorator, Menu, MenuButton, MenuItem, Sheet, styled, Tooltip, Typography } from '@mui/joy';
+import {
+  Avatar,
+  Box,
+  Button,
+  Dropdown,
+  IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemDecorator,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Modal,
+  Sheet,
+  Stack,
+  styled,
+  Tooltip,
+  Typography,
+} from '@mui/joy';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import CopyAllIcon from '@mui/icons-material/CopyAll';
@@ -180,32 +198,47 @@ function ChatDrawerItem(props: {
   // Delete
 
   const { onConversationDeleteNoConfirmation } = props;
-  const handleDeleteButtonShow = React.useCallback(
-    (event: React.MouseEvent) => {
-      // special case: if 'Shift' is pressed, delete immediately
-      if (event.shiftKey) {
-        // immediately delete:conversation
-        event.stopPropagation();
-        onConversationDeleteNoConfirmation(conversationId);
-        return;
-      }
-      setDeleteArmed(true);
-    },
-    [conversationId, onConversationDeleteNoConfirmation],
-  );
+  const [open, setOpen] = React.useState(false);
 
-  const handleDeleteButtonHide = React.useCallback(() => setDeleteArmed(false), []);
+  const handleOpen = () => setOpen(true);
+  const handleClose = (event?: React.SyntheticEvent) => {
+    event?.stopPropagation(); // Prevent event bubbling
+    setOpen(false);
+  };
 
-  const handleConversationDelete = React.useCallback(
-    (event: React.MouseEvent) => {
-      if (deleteArmed) {
-        setDeleteArmed(false);
-        event.stopPropagation();
-        onConversationDeleteNoConfirmation(conversationId);
-      }
-    },
-    [conversationId, deleteArmed, onConversationDeleteNoConfirmation],
-  );
+  const handleDelete = (event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent event bubbling
+    // Add your deletion logic here
+    onConversationDeleteNoConfirmation(conversationId);
+    setOpen(false);
+  };
+
+  // const handleDeleteButtonShow = React.useCallback(
+  //   (event: React.MouseEvent) => {
+
+  //     if (event.shiftKey) {
+
+  //       event.stopPropagation();
+  //       onConversationDeleteNoConfirmation(conversationId);
+  //       return;
+  //     }
+  //     setDeleteArmed(true);
+  //   },
+  //   [conversationId, onConversationDeleteNoConfirmation],
+  // );
+
+  // const handleDeleteButtonHide = React.useCallback(() => setDeleteArmed(false), []);
+
+  // const handleConversationDelete = React.useCallback(
+  //   (event: React.MouseEvent) => {
+  //     if (deleteArmed) {
+  //       setDeleteArmed(false);
+  //       event.stopPropagation();
+  //       onConversationDeleteNoConfirmation(conversationId);
+  //     }
+  //   },
+  //   [conversationId, deleteArmed, onConversationDeleteNoConfirmation],
+  // );
 
   const personaSymbol = userSymbol || SystemPurposes[systemPurposeId]?.symbol || '❓';
   const personaImageURI = SystemPurposes[systemPurposeId]?.imageUri ?? undefined;
@@ -368,7 +401,7 @@ function ChatDrawerItem(props: {
         }),
       }}
     >
-      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, pl: 'calc(var(--ListItem-paddingX) )', pr:"4px"}}>
+      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, pl: 'calc(var(--ListItem-paddingX) )', pr: '4px' }}>
         {/* Title row */}
         <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '0.1rem', alignItems: 'center' }}>
           {titleRowComponent}
@@ -378,16 +411,15 @@ function ChatDrawerItem(props: {
               <MenuButton aria-label="View options" slots={{ root: IconButton }} slotProps={{ root: { size: 'sm' } }}>
                 <MoreVertIcon />
               </MenuButton>
-              <Menu placement='bottom-start' sx={{ minWidth: 20,  /* need to be on top of the Modal on Mobile */ }}>
-         
-          {/* <MenuItem >
+              <Menu placement="bottom-start" sx={{ minWidth: 20 /* need to be on top of the Modal on Mobile */ }}>
+                {/* <MenuItem >
           <Tooltip arrow disableInteractive title="Rename">
                   <FadeInButton size="sm" disabled={isEditingTitle || isAutoEditingTitle} onClick={handleTitleEditBegin}>
                     <EditRoundedIcon />
                   </FadeInButton>
                 </Tooltip>
           </MenuItem> */}
-          <MenuItem >
+                {/* <MenuItem >
           {deleteArmed && (
               <Tooltip color="danger" arrow disableInteractive title="Confirm Deletion">
                 <FadeInButton key="btn-del" variant="solid" color="success" size="sm" onClick={handleConversationDelete} sx={{ opacity: 1, mr: 0.5 }}>
@@ -406,13 +438,46 @@ function ChatDrawerItem(props: {
                 {deleteArmed ? <CloseRoundedIcon /> : <DeleteOutlineIcon />}
               </FadeInButton>
             </Tooltip>
-            {/*</>}*/}
-          </MenuItem>
-          
-        </Menu>
+           
+          </MenuItem> */}
+
+                <MenuItem>
+                  <Button size="sm"  variant="plain" color="danger"  startDecorator={<DeleteOutlineIcon />} onClick={handleOpen}>
+                    Delete
+                  </Button>
+                </MenuItem>
+              </Menu>
             </Dropdown>
           </Box>
         </Box>
+        {/* Confirmation Modal */}
+        <Modal open={open}>
+          <Box
+            sx={{
+              maxWidth: 400,
+              mx: 'auto',
+              my: '20%',
+              p: 3,
+              borderRadius: "20px",
+              boxShadow: 'md',
+              backgroundColor: 'background.body',
+            }}
+            onClick={(e) => e.stopPropagation()} // Prevent click inside modal from closing it
+          >
+            <Typography fontWeight="bold" sx={{ mb: 1 }}>
+              Confirm Deletion
+            </Typography>
+            <Typography sx={{ mb: 2 }}>Are you sure you want to delete this conversation? This action cannot be undone.</Typography>
+            <Stack direction="row" justifyContent="flex-end" spacing={2}>
+              <Button size="sm" variant="plain" color="neutral" startDecorator={<CloseRoundedIcon />} onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button size="sm" variant="solid" color="danger" startDecorator={<DeleteOutlineIcon />} onClick={handleDelete}>
+                Delete
+              </Button>
+            </Stack>
+          </Box>
+        </Modal>
 
         {/* buttons row */}
         {isActive && (
@@ -513,7 +578,7 @@ function ChatDrawerItem(props: {
       <ListItemButton
         onClick={handleConversationActivate}
         sx={{
-          marginLeft:"1px",
+          marginLeft: '1px',
           border: 'none', // there's a default border of 1px and invisible.. hmm
           position: 'relative', // for the progress bar
           borderRadius: 'sm', // OPTIMA_NAV_RADIUS, // sync with the optima radius, because they need to match

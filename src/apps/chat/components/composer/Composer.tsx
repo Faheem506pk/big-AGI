@@ -829,7 +829,7 @@ export function Composer(props: {
         backgroundColor: 'background.level1', 
         borderRadius: '20px',
         mx: '60px',
-        mb: '20px',}}>
+        my: '16px',}}>
               {/* [Mobile, Col1] Mic, Insert Multi-modal content, and Broadcast buttons */}
               {isMobile && (
                 <Box sx={{ flexGrow: 0, display: 'grid', gap: 1 }}>

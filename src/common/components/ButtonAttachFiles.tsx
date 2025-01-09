@@ -61,7 +61,7 @@ function ButtonAttachFiles(props: {
     <Tooltip disableInteractive variant='solid' placement='top-start' title={props.noToolTip ? null : attachFileLegend}>
       <Button
         fullWidth={props.fullWidth}
-        variant='soft'
+        variant='plain'
         color='neutral'
         onClick={handleAttachFilePicker}
         // startDecorator={<AttachFileRoundedIcon />}

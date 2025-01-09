@@ -13,7 +13,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import FormatPaintOutlinedIcon from '@mui/icons-material/FormatPaintOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
-
+import SearchIcon from '@mui/icons-material/Search';
 import type { DConversationId } from '~/common/stores/chat/chat.conversation';
 import { CloseablePopup } from '~/common/components/CloseablePopup';
 import { DFolder, useFolderStore } from '~/common/stores/folders/store-chat-folders';
@@ -249,6 +249,11 @@ function ChatDrawer(props: {
     toggleFilterHasDocFragments, toggleFilterHasImageAssets, toggleFilterHasStars, toggleShowPersonaIcons, toggleShowRelativeSize,
   ]);
 
+  const [isSearchVisible, setIsSearchVisible] = React.useState(false);
+  
+  const handleSearchToggle = () => {
+    setIsSearchVisible(prev => !prev);
+  };
 
   return <>
 
@@ -258,7 +263,7 @@ function ChatDrawer(props: {
         <IconButton size='sm' onClick={toggleEnableFolders}>
           {enableFolders ? <FoldersToggleOn /> : <FoldersToggleOff />}
         </IconButton>
-      </Tooltip> */}
+      </Tooltip> 
       <IconButton onClick={handleSearchToggle} sx={{
            
            borderRadius: 'sm',

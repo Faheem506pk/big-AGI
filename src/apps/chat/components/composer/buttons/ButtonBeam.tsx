@@ -7,17 +7,15 @@ import { ChatBeamIcon } from '~/common/components/icons/ChatBeamIcon';
 import { KeyStroke } from '~/common/components/KeyStroke';
 import { animationEnterBelow } from '~/common/util/animUtils';
 
-
-const desktopLegend =
+const desktopLegend = (
   <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>
-    Combine the answers from multiple models<br />
-    <KeyStroke combo='Ctrl + Enter' sx={{ mt: 0.5, mb: 0.25 }} />
-  </Box>;
+    Combine the answers from multiple models
+    <br />
+    <KeyStroke combo="Ctrl + Enter" sx={{ mt: 0.5, mb: 0.25 }} />
+  </Box>
+);
 
-const desktopLegendNoContent =
-  <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>
-    Enter the text to Beam, then press this
-  </Box>;
+const desktopLegendNoContent = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Enter the text to Beam, then press this</Box>;
 
 const mobileSx: SxProps = {
   mr: { xs: 1, md: 2 },
@@ -32,24 +30,24 @@ const desktopSx: SxProps = {
   animation: `${animationEnterBelow} 0.1s ease-out`,
 };
 
-
 export const ButtonBeamMemo = React.memo(ButtonBeam);
 
-function ButtonBeam(props: {
-  isMobile?: boolean,
-  color?: ColorPaletteProp,
-  disabled?: boolean,
-  hasContent?: boolean,
-  onClick: () => void,
-}) {
+function ButtonBeam(props: { isMobile?: boolean; color?: ColorPaletteProp; disabled?: boolean; hasContent?: boolean; onClick: () => void }) {
   return props.isMobile ? (
-    <IconButton  disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
+    <IconButton disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
       <ChatBeamIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive  arrow placement='right' title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
-      <Button variant='plain'  color='neutral' disabled={props.disabled} onClick={props.onClick} startDecorator={<ChatBeamIcon />} sx={desktopSx}>
-        Beam
+    <Tooltip disableInteractive arrow placement="right" title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
+      <Button
+        variant="soft"
+        color="neutral"
+        disabled={props.disabled}
+        onClick={props.onClick}
+        // startDecorator={<ChatBeamIcon />} sx={desktopSx}
+      >
+        <ChatBeamIcon />
+        {/* Beam */}
       </Button>
     </Tooltip>
   );

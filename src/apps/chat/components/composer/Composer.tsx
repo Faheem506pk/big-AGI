@@ -1056,7 +1056,7 @@ export function Composer(props: {
                           display: 'flex',
                           flexDirection: 'row',
                           justifyContent: 'space-between',
-                          gap: isDesktop ? 1 : 0.25,
+                          gap: isDesktop ? 0.25 : 0.25,
                         }}
                       >
                         {/*<FormHelperText sx={{ mx: 'auto' }}>*/}
@@ -1119,11 +1119,12 @@ export function Composer(props: {
                                 loading={sendStarted}
                                 loadingPosition="end"
                                 onClick={handleSendClicked}
-                                endDecorator={sendButtonIcon}
+                                // endDecorator={sendButtonIcon}
                                 sx={{ '--Button-gap': '1rem' }}
                               >
                                 {micContinuation && 'Voice '}
-                                {sendButtonLabel}
+                                {sendButtonIcon}
+                                {/* {sendButtonLabel} */}
                               </Button>
                             ) : (
                               <Button
@@ -1132,10 +1133,11 @@ export function Composer(props: {
                                 variant="soft"
                                 disabled={noConversation}
                                 onClick={handleStopClicked}
-                                endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
+                                // endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
                                 sx={{ animation: `${animationEnterBelow} 0.1s ease-out` }}
                               >
-                                Stop
+                                <StopOutlinedIcon sx={{ fontSize: 18 }} />
+                                {/* Stop */}
                               </Button>
                             )}
 
@@ -1290,11 +1292,12 @@ export function Composer(props: {
                         loading={sendStarted}
                         loadingPosition="end"
                         onClick={handleSendClicked}
-                        endDecorator={sendButtonIcon}
+                        // endDecorator={sendButtonIcon}
                         sx={{ '--Button-gap': '1rem' }}
                       >
                         {micContinuation && 'Voice '}
-                        {sendButtonLabel}
+                        {sendButtonIcon}
+                        {/* {sendButtonLabel} */}
                       </Button>
                     ) : (
                       <Button
@@ -1303,10 +1306,11 @@ export function Composer(props: {
                         variant="soft"
                         disabled={noConversation}
                         onClick={handleStopClicked}
-                        endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
+                        // endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
                         sx={{ animation: `${animationEnterBelow} 0.1s ease-out` }}
                       >
-                        Stop
+                        <StopOutlinedIcon sx={{ fontSize: 18 }} />
+                        {/* Stop */}
                       </Button>
                     )}
 

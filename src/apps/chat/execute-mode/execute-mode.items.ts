@@ -25,7 +25,7 @@ export const ExecuteModeItems: { [key in ChatExecuteMode]: ModeDescription } = {
     label: 'Chat',
     description: 'Persona replies',
     canAttach: true,
-    sendColor: 'primary',
+    sendColor: 'neutral',
     sendText: 'Chat',
   },
   'beam-content': {
@@ -34,7 +34,7 @@ export const ExecuteModeItems: { [key in ChatExecuteMode]: ModeDescription } = {
     shortcut: 'Ctrl + Enter',
     canAttach: true,
     hideOnDesktop: true,
-    sendColor: 'primary',
+    sendColor: 'neutral',
     sendText: 'Beam',
   },
   'append-user': {
@@ -42,7 +42,7 @@ export const ExecuteModeItems: { [key in ChatExecuteMode]: ModeDescription } = {
     description: 'Append a message',
     shortcut: 'Alt + Enter',
     canAttach: true,
-    sendColor: 'primary',
+    sendColor: 'neutral',
     sendText: 'Write',
   },
   'generate-image': {

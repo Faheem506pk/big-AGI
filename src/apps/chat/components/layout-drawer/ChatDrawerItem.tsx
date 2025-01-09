@@ -320,7 +320,7 @@ function ChatDrawerItem(props: {
         fontSize: 'inherit',
         backgroundColor: isActive ? 'neutral.solidActiveBg' : 'neutral.softBg',
         borderRadius: 'md',
-        mx: '0.8rem',
+        mx: '0.5rem',
         '&:hover > button': {
           opacity: 1, // fade in buttons when hovering, but by default wash them out a bit
         },
@@ -330,10 +330,10 @@ function ChatDrawerItem(props: {
       }}
     >
 
-      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, px: 'calc(var(--ListItem-paddingX) - 0rem)' }}>
+      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, px: 'calc(var(--ListItem-paddingX) - 0.6rem)' }}>
 
         {/* Title row */}
-        <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '2rem', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '2rem', alignItems: 'center' , px:'0.4rem' }}>
           {titleRowComponent}
         </Box>
 
@@ -441,7 +441,7 @@ function ChatDrawerItem(props: {
           ...isIncognito && {
             filter: 'contrast(0)',
           },
-          ml:"0px",
+          ml:"-7px"
         }}
       >
 

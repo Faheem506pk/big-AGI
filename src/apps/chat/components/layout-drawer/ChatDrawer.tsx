@@ -377,7 +377,7 @@ function ChatDrawer(props: {
             <Typography key={'nav-divider-' + idx} level='body-xs' sx={{
               textAlign: 'left',
               my: 1,
-              ml: "22px",
+              ml: "16px",
               // my: 'calc(var(--ListItem-minHeight) / 4)',
               // keeps the group header sticky to the top
               position: 'sticky',

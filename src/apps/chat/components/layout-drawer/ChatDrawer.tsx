@@ -319,7 +319,7 @@ function ChatDrawer(props: {
       {enableFolders && <ListDivider sx={{ mb: 0 }} />}
 
       {/* Search / New Chat */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', m: 2, gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', mx: 2, gap: 2 }}>
 
         {/* Search Input Field */}
         {isSearchVisible && (
@@ -375,8 +375,9 @@ function ChatDrawer(props: {
             />
           ) : item.type === 'nav-item-group' ? (
             <Typography key={'nav-divider-' + idx} level='body-xs' sx={{
-              textAlign: 'center',
+              textAlign: 'left',
               my: 1,
+              ml: "22px",
               // my: 'calc(var(--ListItem-minHeight) / 4)',
               // keeps the group header sticky to the top
               position: 'sticky',

@@ -319,7 +319,7 @@ function ChatDrawer(props: {
       {enableFolders && <ListDivider sx={{ mb: 0 }} />}
 
       {/* Search / New Chat */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', mx: 2, gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1, gap: 2 }}>
 
         {/* Search Input Field */}
         {isSearchVisible && (

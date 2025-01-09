@@ -23,7 +23,7 @@ function ButtonAttachCamera(props: { isMobile?: boolean, onOpenCamera: () => voi
     </IconButton>
   ) : (
     <Tooltip disableInteractive variant='solid' placement='top-start' title={attachCameraLegend(!!props.isMobile)}>
-      <Button fullWidth variant='plain' color='neutral' onClick={props.onOpenCamera} startDecorator={<CameraAltOutlinedIcon />}
+      <Button variant='plain' color='neutral' onClick={props.onOpenCamera} startDecorator={<CameraAltOutlinedIcon />}
               sx={{ justifyContent: 'flex-start' }}>
         Camera
       </Button>

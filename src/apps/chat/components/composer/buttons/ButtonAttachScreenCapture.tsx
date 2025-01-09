@@ -51,16 +51,19 @@ function ButtonAttachScreenCapture(props: { isMobile?: boolean, onAttachScreenCa
       }
     >
       <Button
-        fullWidth
+        
         variant={capturing ? 'solid' : 'plain'}
         color={!!error ? 'danger' : 'neutral'}
         onClick={handleTakeScreenCapture}
         loading={capturing}
         loadingPosition={capturing ? 'start' : 'center'}
-        startDecorator={<ScreenshotMonitorIcon />}
-        sx={{ justifyContent: 'flex-start' }}
+        // startDecorator={<ScreenshotMonitorIcon />}
+        sx={{
+          //  justifyContent: 'flex-start',
+           paddingInline:'0.5rem' }}
       >
-        Screen
+        <ScreenshotMonitorIcon />
+        {/* Screen */}
       </Button>
     </Tooltip>
   );

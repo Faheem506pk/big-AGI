@@ -65,7 +65,11 @@ function ButtonAttachFiles(props: {
         color='neutral'
         onClick={handleAttachFilePicker}
         // startDecorator={<AttachFileRoundedIcon />}
-        // sx={{ justifyContent: 'flex-start' }}
+        sx={{
+          //  justifyContent: 'flex-start',
+          paddingInline:'0.5rem'
+
+         }}
       >
         <AttachFileRoundedIcon />
         {/* File */}

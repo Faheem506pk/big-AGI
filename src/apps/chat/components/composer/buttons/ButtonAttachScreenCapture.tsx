@@ -58,7 +58,9 @@ function ButtonAttachScreenCapture(props: { isMobile?: boolean, onAttachScreenCa
         loading={capturing}
         loadingPosition={capturing ? 'start' : 'center'}
         // startDecorator={<ScreenshotMonitorIcon />}
-        // sx={{ justifyContent: 'flex-start' }}
+        sx={{
+          //  justifyContent: 'flex-start',
+           paddingInline:'0.5rem' }}
       >
         <ScreenshotMonitorIcon />
         {/* Screen */}

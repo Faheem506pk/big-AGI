@@ -61,13 +61,14 @@ function ButtonAttachFiles(props: {
     <Tooltip disableInteractive variant='solid' placement='top-start' title={props.noToolTip ? null : attachFileLegend}>
       <Button
         fullWidth={props.fullWidth}
-        variant='plain'
+        variant='soft'
         color='neutral'
         onClick={handleAttachFilePicker}
-        startDecorator={<AttachFileRoundedIcon />}
-        sx={{ justifyContent: 'flex-start' }}
+        // startDecorator={<AttachFileRoundedIcon />}
+        // sx={{ justifyContent: 'flex-start' }}
       >
-        File
+        <AttachFileRoundedIcon />
+        {/* File */}
       </Button>
     </Tooltip>
   );

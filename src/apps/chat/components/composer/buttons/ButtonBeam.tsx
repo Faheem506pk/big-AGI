@@ -28,6 +28,7 @@ const desktopSx: SxProps = {
   // borderColor: 'primary.outlinedBorder',
   // boxShadow: '0 4px 16px -4px rgb(var(--joy-palette-primary-mainChannel) / 10%)',
   animation: `${animationEnterBelow} 0.1s ease-out`,
+  paddingInline:'0.5rem'
 };
 
 export const ButtonBeamMemo = React.memo(ButtonBeam);
@@ -44,7 +45,8 @@ function ButtonBeam(props: { isMobile?: boolean; color?: ColorPaletteProp; disab
         color="neutral"
         disabled={props.disabled}
         onClick={props.onClick}
-        // startDecorator={<ChatBeamIcon />} sx={desktopSx}
+        // startDecorator={<ChatBeamIcon />} 
+        sx={desktopSx}
       >
         <ChatBeamIcon />
         {/* Beam */}

@@ -29,7 +29,11 @@ function ButtonAttachClipboard(props: { isMobile?: boolean; onClick: () => void 
         color="neutral"
         //  startDecorator={<ContentPasteGoIcon />}
         onClick={props.onClick}
-        // sx={{ justifyContent: 'flex-start' }}
+        sx={{ 
+          // justifyContent: 'flex-start',
+          paddingInline:'0.5rem'
+
+         }}
       >
         <ContentPasteGoIcon />
         {/* Paste */}

@@ -265,7 +265,7 @@ function ChatDrawerItem(props: {
         onCancel={handleTitleEditCancel}
         sx={{
           flexGrow: 1,
-          ml: -1.5, mr: -0.5,
+          ml: -1, mr: -1,
         }}
       />
     )}
@@ -306,7 +306,7 @@ function ChatDrawerItem(props: {
       sx={{
         // common
         // position: 'relative', // for the progress bar (now disabled)
-        '--ListItem-minHeight': '2.75rem',
+        '--ListItem-minHeight': '1.5rem',
 
         // differences between primary and secondary variants
         ...(isActive ? {
@@ -320,7 +320,7 @@ function ChatDrawerItem(props: {
         fontSize: 'inherit',
         backgroundColor: isActive ? 'neutral.solidActiveBg' : 'neutral.softBg',
         borderRadius: 'md',
-        mx: '0.25rem',
+        mx: '0.5rem',
         '&:hover > button': {
           opacity: 1, // fade in buttons when hovering, but by default wash them out a bit
         },
@@ -330,16 +330,16 @@ function ChatDrawerItem(props: {
       }}
     >
 
-      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, px: 'calc(var(--ListItem-paddingX) - 0.25rem)' }}>
+      <ListItem sx={{ border: 'none', display: 'grid', gap: 0, px: 'calc(var(--ListItem-paddingX) - 0.6rem)' }}>
 
         {/* Title row */}
-        <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '2.25rem', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', gap: 'var(--ListItem-gap)', minHeight: '2rem', alignItems: 'center' , px:'0.4rem' }}>
           {titleRowComponent}
         </Box>
 
         {/* buttons row */}
         {isActive && (
-          <Box sx={{ display: 'flex', gap: 0.5, minHeight: '2.25rem', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', gap: 0.5, minHeight: '2rem', alignItems: 'center' }}>
             {props.showSymbols && <ListItemDecorator />}
 
             {/* Current Folder color, and change initiator */}
@@ -441,6 +441,7 @@ function ChatDrawerItem(props: {
           ...isIncognito && {
             filter: 'contrast(0)',
           },
+          ml:"-7px"
         }}
       >
 

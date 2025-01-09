@@ -25,6 +25,7 @@ import WorkspacesOutlinedIcon from '@mui/icons-material/WorkspacesOutlined';
 // Link icons
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { DiscordIcon } from '~/common/components/icons/3rdparty/DiscordIcon';
+import ExtensionIcon from '@mui/icons-material/Extension';
 // Modal icons
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -110,17 +111,17 @@ export const navItems: {
       panelAsMenu: true,
       fullWidth: true,
     },
-    {
-      name: 'Draw',
-      icon: FormatPaintOutlinedIcon,
-      iconActive: FormatPaintTwoToneIcon,
-      type: 'app',
-      route: '/draw',
-      hideDrawer: true,
-      // hideOnMobile: true,
-      // isDev: true,
-      // _delete: true,
-    },
+    // {
+    //   name: 'Draw',
+    //   icon: FormatPaintOutlinedIcon,
+    //   iconActive: FormatPaintTwoToneIcon,
+    //   type: 'app',
+    //   route: '/draw',
+    //   hideDrawer: true,
+    //   // hideOnMobile: true,
+    //   // isDev: true,
+    //   // _delete: true,
+    // },
     {
       name: 'Cortex',
       icon: AutoAwesomeOutlinedIcon,
@@ -212,15 +213,15 @@ export const navItems: {
       hideIcon: hasNoChatLinkItems,
       hideNav: hasNoChatLinkItems,
     },
-    {
-      name: 'News',
-      icon: EventNoteOutlinedIcon,
-      iconActive: EventNoteIcon,
-      type: 'app',
-      route: '/news',
-      hideBar: true,
-      hideDrawer: true,
-    },
+    // {
+    //   name: 'News',
+    //   icon: EventNoteOutlinedIcon,
+    //   iconActive: EventNoteIcon,
+    //   type: 'app',
+    //   route: '/news',
+    //   hideBar: true,
+    //   hideDrawer: true,
+    // },
   ],
 
   // Modals
@@ -241,24 +242,30 @@ export const navItems: {
 
   // External links
   links: [
+    {
+      type: 'extLink',
+      name: 'Extension',
+      icon: ExtensionIcon,
+      href: Brand.URIs.Extension,
+    },
     // {
     //   type: 'extLink',
     //   name: 'X',
     //   icon: TwitterIcon,
     //   href: 'https://twitter.com',
     // },
-    {
-      type: 'extLink',
-      name: 'Discord',
-      icon: DiscordIcon,
-      href: Brand.URIs.SupportInvite,
-    },
-    {
-      type: 'extLink',
-      name: 'GitHub',
-      icon: GitHubIcon,
-      href: Brand.URIs.OpenRepo,
-    },
+    // {
+    //   type: 'extLink',
+    //   name: 'Discord',
+    //   icon: DiscordIcon,
+    //   href: Brand.URIs.SupportInvite,
+    // },
+    // {
+    //   type: 'extLink',
+    //   name: 'GitHub',
+    //   icon: GitHubIcon,
+    //   href: Brand.URIs.OpenRepo,
+    // },
   ],
 
 };

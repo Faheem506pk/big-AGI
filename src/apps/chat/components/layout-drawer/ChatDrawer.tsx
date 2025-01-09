@@ -13,7 +13,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import FormatPaintOutlinedIcon from '@mui/icons-material/FormatPaintOutlined';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
-
+import SearchIcon from '@mui/icons-material/Search';
 import type { DConversationId } from '~/common/stores/chat/chat.conversation';
 import { CloseablePopup } from '~/common/components/CloseablePopup';
 import { DFolder, useFolderStore } from '~/common/stores/folders/store-chat-folders';
@@ -155,13 +155,13 @@ function ChatDrawer(props: {
   const { isSearching } = isDrawerSearching(debouncedSearchQuery);
   const groupingComponent = React.useMemo(() => (
     <Dropdown>
-      <MenuButton
+      {/* <MenuButton
         aria-label='View options'
         slots={{ root: IconButton }}
         slotProps={{ root: { size: 'sm' } }}
       >
         <MoreVertIcon />
-      </MenuButton>
+      </MenuButton> */}
 
       {!isSearching ? (
         // Search/Filter default menu: Grouping, Filtering, ...
@@ -249,6 +249,11 @@ function ChatDrawer(props: {
     toggleFilterHasDocFragments, toggleFilterHasImageAssets, toggleFilterHasStars, toggleShowPersonaIcons, toggleShowRelativeSize,
   ]);
 
+  const [isSearchVisible, setIsSearchVisible] = React.useState(false);
+  
+  const handleSearchToggle = () => {
+    setIsSearchVisible(prev => !prev);
+  };
 
   return <>
 
@@ -258,7 +263,27 @@ function ChatDrawer(props: {
         <IconButton size='sm' onClick={toggleEnableFolders}>
           {enableFolders ? <FoldersToggleOn /> : <FoldersToggleOff />}
         </IconButton>
-      </Tooltip>
+      </Tooltip> 
+      <IconButton onClick={handleSearchToggle} sx={{
+           
+           borderRadius: 'sm',
+         }}>
+          <SearchIcon sx={{ fontSize: '20px', fontWeight: 'bold' }}/>
+        </IconButton>
+      <IconButton
+          // variant='plain'
+          variant={disableNewButton ? undefined : 'plain'}
+          disabled={disableNewButton}
+          onClick={handleButtonNew}
+          sx={{
+           
+            borderRadius: 'sm',
+          }}
+        >
+         <AddIcon sx={{ fontSize: '20px' , fontWeight: 'bold'}} />
+          
+        </IconButton>
+        
     </OptimaDrawerHeader>
 
     {/* Folders List (shrink at twice the rate as the Titles) */}
@@ -294,9 +319,10 @@ function ChatDrawer(props: {
       {enableFolders && <ListDivider sx={{ mb: 0 }} />}
 
       {/* Search / New Chat */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', m: 2, gap: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1, gap: 2 }}>
 
         {/* Search Input Field */}
+        {isSearchVisible && (
         <DebouncedInputMemo
           minChars={2}
           onDebounce={setDebouncedSearchQuery}
@@ -305,31 +331,31 @@ function ChatDrawer(props: {
           aria-label='Search'
           endDecorator={groupingComponent}
         />
-
+        )}
         {/* New Chat Button */}
-        <Button
-          // variant='outlined'
-          variant={disableNewButton ? undefined : 'soft'}
-          disabled={disableNewButton}
-          onClick={handleButtonNew}
-          sx={{
-            // ...PageDrawerTallItemSx,
-            justifyContent: 'flex-start',
-            padding: '0px 0.75rem',
+        {/* // <Button
+        //   variant='outlined'
+        //   variant={disableNewButton ? undefined : 'soft'}
+        //   disabled={disableNewButton}
+        //   onClick={handleButtonNew}
+        //   sx={{
+        //     ...PageDrawerTallItemSx,
+        //     justifyContent: 'flex-start',
+        //     padding: '0px 0.75rem',
 
-            // style
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-            borderRadius: 'sm',
-            '--ListItemDecorator-size': 'calc(2.5rem - 1px)', // compensate for the border
-            // backgroundColor: 'background.popup',
-            // boxShadow: (disableNewButton || props.isMobile) ? 'none' : 'xs',
-            // transition: 'box-shadow 0.2s',
-          }}
-        >
-          <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
-          New chat
-        </Button>
+        //     style
+        //     border: '1px solid',
+        //     borderColor: 'neutral.outlinedBorder',
+        //     borderRadius: 'sm',
+        //     '--ListItemDecorator-size': 'calc(2.5rem - 1px)', compensate for the border
+        //     backgroundColor: 'background.popup',
+        //     boxShadow: (disableNewButton || props.isMobile) ? 'none' : 'xs',
+        //     transition: 'box-shadow 0.2s',
+        //   }}
+        // >
+        //   <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
+        //   New chat
+        // </Button> */}
 
       </Box>
 
@@ -349,8 +375,9 @@ function ChatDrawer(props: {
             />
           ) : item.type === 'nav-item-group' ? (
             <Typography key={'nav-divider-' + idx} level='body-xs' sx={{
-              textAlign: 'center',
+              textAlign: 'left',
               my: 1,
+              ml: "16px",
               // my: 'calc(var(--ListItem-minHeight) / 4)',
               // keeps the group header sticky to the top
               position: 'sticky',

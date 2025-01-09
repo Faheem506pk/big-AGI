@@ -2,11 +2,12 @@ import * as React from 'react';
 import Router from 'next/router';
 
 import type { SxProps } from '@mui/joy/styles/types';
-import { Divider, Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem, Tooltip } from '@mui/joy';
+import { Divider, Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem, Tooltip, Box } from '@mui/joy';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 import { AgiSquircleIcon } from '~/common/components/icons/AgiSquircleIcon';
+import { authUserButton } from '~/common/providers/ProviderAuth';
 import { checkDivider, checkVisibileIcon, NavItemApp, navItems } from '~/common/app.nav';
 import { themeZIndexDesktopNav } from '~/common/app.theme';
 import { useHasLLMs } from '~/common/stores/llms/llms.hooks';
@@ -22,7 +23,8 @@ const desktopNavBarSx: SxProps = {
 };
 
 const bottomGroupSx: SxProps = {
-  mb: 'calc(2 * var(--GroupMarginY))',
+  mb: 'calc(5 * var(--GroupMarginY))',
+  
 };
 
 const navItemsDividerSx: SxProps = {
@@ -192,6 +194,9 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
       <DesktopNavGroupBox sx={bottomGroupSx}>
         {navExtLinkItems}
         {navModalItems}
+        <Box sx={{ mt: '8px' }}>
+        {authUserButton}
+        </Box>
       </DesktopNavGroupBox>
 
     </InvertedBar>

@@ -40,7 +40,7 @@ function ButtonBeam(props: { isMobile?: boolean; color?: ColorPaletteProp; disab
   ) : (
     <Tooltip disableInteractive arrow placement="right" title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
       <Button
-        variant="soft"
+        variant="plain"
         color="neutral"
         disabled={props.disabled}
         onClick={props.onClick}

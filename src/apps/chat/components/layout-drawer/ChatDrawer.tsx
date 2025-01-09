@@ -322,6 +322,7 @@ function ChatDrawer(props: {
       <Box sx={{ display: 'flex', flexDirection: 'column', m: 2, gap: 2 }}>
 
         {/* Search Input Field */}
+        {isSearchVisible && (
         <DebouncedInputMemo
           minChars={2}
           onDebounce={setDebouncedSearchQuery}
@@ -330,31 +331,31 @@ function ChatDrawer(props: {
           aria-label='Search'
           endDecorator={groupingComponent}
         />
-
+        )}
         {/* New Chat Button */}
-        <Button
-          // variant='outlined'
-          variant={disableNewButton ? undefined : 'soft'}
-          disabled={disableNewButton}
-          onClick={handleButtonNew}
-          sx={{
-            // ...PageDrawerTallItemSx,
-            justifyContent: 'flex-start',
-            padding: '0px 0.75rem',
+        {/* // <Button
+        //   variant='outlined'
+        //   variant={disableNewButton ? undefined : 'soft'}
+        //   disabled={disableNewButton}
+        //   onClick={handleButtonNew}
+        //   sx={{
+        //     ...PageDrawerTallItemSx,
+        //     justifyContent: 'flex-start',
+        //     padding: '0px 0.75rem',
 
-            // style
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-            borderRadius: 'sm',
-            '--ListItemDecorator-size': 'calc(2.5rem - 1px)', // compensate for the border
-            // backgroundColor: 'background.popup',
-            // boxShadow: (disableNewButton || props.isMobile) ? 'none' : 'xs',
-            // transition: 'box-shadow 0.2s',
-          }}
-        >
-          <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
-          New chat
-        </Button>
+        //     style
+        //     border: '1px solid',
+        //     borderColor: 'neutral.outlinedBorder',
+        //     borderRadius: 'sm',
+        //     '--ListItemDecorator-size': 'calc(2.5rem - 1px)', compensate for the border
+        //     backgroundColor: 'background.popup',
+        //     boxShadow: (disableNewButton || props.isMobile) ? 'none' : 'xs',
+        //     transition: 'box-shadow 0.2s',
+        //   }}
+        // >
+        //   <ListItemDecorator><AddIcon sx={{ fontSize: '' }} /></ListItemDecorator>
+        //   New chat
+        // </Button> */}
 
       </Box>
 

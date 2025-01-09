@@ -77,7 +77,7 @@ function TokenBadge(props: {
         slotProps={{
           root: {
             sx: {
-              ...((props.absoluteBottomRight) && { position: 'absolute', bottom: 8, right: 8 }),
+              ...((props.absoluteBottomRight) && { position: 'absolute', bottom: 8, right: 24 }),
               cursor: 'help',
               ...(shallInvisible && {
                 opacity: 0,

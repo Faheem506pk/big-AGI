@@ -929,7 +929,7 @@ export function Composer(props: {
                         textarea: {
                           enterKeyHint: enterIsNewline ? 'enter' : 'send',
                           sx: {
-                            ...(recognitionState.isAvailable && { pr: { md: 5 }, p: { md: 0.5 } }),
+                            ...(recognitionState.isAvailable && { pr: { md: 5 }, p: { md: 1 } }),
                             // mb: 0.5, // no need; the outer container already has enough p (for TokenProgressbar)
                           },
                           ref: composerTextAreaRef,
@@ -979,8 +979,8 @@ export function Composer(props: {
                         top: 0,
                         right: 0,
                         zIndex: zIndexComposerOverlayMic + 1,
-                        mt: isDesktop ? 1 : 0.25,
-                        mr: isDesktop ? 1 : 0.25,
+                        mt: isDesktop ? 1.5 : 0.25,
+                        mr: isDesktop ? 2 : 0.25,
                         display: 'flex',
                         flexDirection: 'column',
                         gap: isDesktop ? 1 : 0.25,

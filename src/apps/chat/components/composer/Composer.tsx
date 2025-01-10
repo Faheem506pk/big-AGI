@@ -793,11 +793,11 @@ export function Composer(props: {
             (recognitionState.isAvailable ? ' · ramble' : '') +
             '...';
 
-  // if (isDesktop && timeToShowTips) {
-  //   if (explainShiftEnter) textPlaceholder += !enterIsNewline ? '\n\n💡 Shift + Enter to add a new line' : '\n\n💡 Shift + Enter to send';
-  //   else if (explainAltEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Alt + Enter to just append the message');
-  //   else if (explainCtrlEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Ctrl + Enter to beam');
-  // }
+  if (isDesktop && timeToShowTips) {
+    if (explainShiftEnter) textPlaceholder += !enterIsNewline ? '\n\n💡 Shift + Enter to add a new line' : '\n\n💡 Shift + Enter to send';
+    else if (explainAltEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Alt + Enter to just append the message');
+    else if (explainCtrlEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Ctrl + Enter to beam');
+  }
 
   const stableGridSx: SxProps = React.useMemo(
     () => ({
@@ -869,7 +869,7 @@ export function Composer(props: {
                   // layout
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 1,
+                  gap: 0,
                   minWidth: 200, // flex: enable X-scrolling (resetting any possible minWidth due to the attachment drafts)
                 }}
               >

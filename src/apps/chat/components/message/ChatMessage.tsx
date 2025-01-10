@@ -71,6 +71,8 @@ const messageBodySx: SxProps = {
   display: 'flex',
   alignItems: 'flex-start', // avatars at the top, and honor 'static' position
   gap: { xs: 0, md: 1 },
+  maxWidth: "900px",
+  mx:"auto",
 };
 
 const messageBodyReverseSx: SxProps = {
@@ -529,7 +531,7 @@ export function ChatMessage(props: {
     px: { xs: 1, md: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2 },
     py: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2,
     // filter: 'url(#agi-futuristic-glow)',
-
+justifyContent: 'center',
     // style: omit border if set externally
     ...(!('borderBottom' in (props.sx || {})) && {
       // borderBottom: '1px solid',

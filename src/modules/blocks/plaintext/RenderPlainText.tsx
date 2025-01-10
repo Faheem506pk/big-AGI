@@ -17,7 +17,7 @@ export const RenderPlainText = (props: { content: string; sx?: SxProps; fromRole
   return (
     <Typography
       sx={{
-        mx: 0.1,
+        mx: 0,
      
         // display: 'flex', // Commented on 2023-12-29: the commands were drawn as columns
         alignItems: 'baseline',

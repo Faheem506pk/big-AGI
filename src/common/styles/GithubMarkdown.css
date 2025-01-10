@@ -53,6 +53,8 @@
   --color-danger-emphasis: #da3633;
   --color-done-fg: #a371f7;
   --color-done-emphasis: #8957e5;
+  --color-user-chat: #303030;
+
 }
 
 [data-joy-color-scheme="light"] .markdown-body {
@@ -106,6 +108,7 @@
   --color-danger-emphasis: #cf222e;
   --color-done-fg: #8250df;
   --color-done-emphasis: #8250df;
+  --color-user-chat: #f3f3f3;
 }
 
 

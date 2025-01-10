@@ -532,8 +532,8 @@ export function ChatMessage(props: {
 
     // style: omit border if set externally
     ...(!('borderBottom' in (props.sx || {})) && {
-      borderBottom: '1px solid',
-      borderBottomColor: 'divider',
+      // borderBottom: '1px solid',
+      // borderBottomColor: 'divider',
     }),
 
     // style: when starred

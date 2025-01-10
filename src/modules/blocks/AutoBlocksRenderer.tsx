@@ -126,6 +126,7 @@ export function AutoBlocksRenderer(props: {
                 key={'txt-bk-' + index}
                 content={bkInput.content}
                 sx={scaledTypographySx}
+                fromRole={props.fromRole}
               />
             ) : (
               // Keep in sync with ScaledMarkdownRenderer

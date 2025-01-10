@@ -57,6 +57,7 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
         // popup [white] > surface [50] > level1 [100] > level2 [200] > level3 [300 -> unused] > body [white -> 300]
         background: {
           // New
+          backdrop: 'var(--color-user-chat, #f3f3f3)',
           surface: 'var(--joy-palette-neutral-50, #FBFCFE)',
           level1: 'var(--joy-palette-neutral-100, #F0F4F8)',
           level2: 'var(--joy-palette-neutral-200, #DDE7EE)',
@@ -75,6 +76,7 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
         },
         background: {
           // New
+          backdrop: 'var(--color-user-chat, #303030)',
           popup: '#24292c', // 3: #32383E, 1: #171A1C, 2: #25282B
           surface: 'var(--joy-palette-neutral-800, #171A1C)',
           level1: 'var(--joy-palette-neutral-900, #0B0D0E)',

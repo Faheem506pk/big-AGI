@@ -82,7 +82,7 @@ const tooltipMetricsGridSx: SxProps = {
 export function messageBackground(messageRole: DMessageRole | string, wasEdited: boolean, isAssistantIssue: boolean): string {
   switch (messageRole) {
     case 'user':
-      return 'primary.plainHoverBg'; // was .background.level1
+      return 'background.surface'; // was .background.level1 or primary.plainHoverBg
     case 'assistant':
       return isAssistantIssue ? 'danger.softBg' : 'background.surface';
     case 'system':

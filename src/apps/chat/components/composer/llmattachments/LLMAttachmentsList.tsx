@@ -136,7 +136,7 @@ export function LLMAttachmentsList(props: {
   return <>
 
     {/* Attachment Drafts bar */}
-    <Box sx={{ position: 'relative' }}>
+    <Box sx={{ position: 'relative' ,px:2 , pb:1.5, display:"flex", flexDirection:"row", justifyContent:"space-between"  }}>
 
       {/* Horizontally scrollable */}
       <Box sx={{ height: '100%', pr: 5, overflowX: 'auto', display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -165,8 +165,8 @@ export function LLMAttachmentsList(props: {
         onContextMenu={handleOverallMenuToggle}
         sx={{
           // borderRadius: 'sm',
-          borderRadius: 0,
-          position: 'absolute', right: 0, top: 0,
+          borderRadius: "10px",
+          position: 'relative',
           backgroundColor: 'neutral.softDisabledBg',
         }}
       >

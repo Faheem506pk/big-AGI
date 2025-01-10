@@ -22,7 +22,7 @@ import { BlockPartToolResponse } from './BlockPartToolResponse';
 const editLayoutSx: SxProps = {
   display: 'grid',
   gap: 1.5,     // see why we give more space on ChatMessage
-
+  maxWidth: "744px",
   // horizontal separator between messages (second part+ and before)
   // '& > *:not(:first-of-type)': {
   //   borderTop: '1px solid',
@@ -33,11 +33,15 @@ const editLayoutSx: SxProps = {
 const startLayoutSx: SxProps = {
   ...editLayoutSx,
   justifyContent: 'flex-start',
+  marginRight: 'auto',
+  paddingRight: 3,
 };
 
 const endLayoutSx: SxProps = {
   ...editLayoutSx,
   justifyContent: 'flex-end',
+  marginLeft: 'auto',
+ paddingLeft: 3,
 };
 
 

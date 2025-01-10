@@ -12,6 +12,7 @@ const mobileSx: SxProps = {
 
 const desktopSx: SxProps = {
   '--Button-gap': '1rem',
+  paddingInline:'0.5rem'
 } as const;
 
 export const ButtonCallMemo = React.memo(ButtonCall);
@@ -24,11 +25,12 @@ function ButtonCall(props: { isMobile?: boolean; disabled?: boolean; onClick: ()
   ) : (
     <Tooltip disableInteractive variant="solid" arrow placement="right" title={callConversationLegend}>
       <Button
-        variant="soft"
+         variant="plain"
         color="neutral"
         disabled={props.disabled}
         onClick={props.onClick}
-        // endDecorator={<CallIcon />} sx={desktopSx}
+        // endDecorator={<CallIcon />} 
+        sx={desktopSx}
       >
         <CallIcon />
         {/* Call */}

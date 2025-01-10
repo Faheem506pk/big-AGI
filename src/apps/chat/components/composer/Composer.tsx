@@ -404,7 +404,7 @@ export function Composer(props: {
       : recognitionState.hasAudio
         ? 'primary'
         : 'neutral';
-  const micVariant: VariantProp = recognitionState.hasSpeech ? 'solid' : recognitionState.hasAudio ? 'soft' : 'soft'; //(isDesktop ? 'soft' : 'plain');
+  const micVariant: VariantProp = recognitionState.hasSpeech ? 'solid' : recognitionState.hasAudio ? 'soft' : 'plain'; //(isDesktop ? 'soft' : 'plain');
 
   const handleToggleMic = React.useCallback(() => {
     if (micIsRunning && micContinuation) setMicContinuation(false);
@@ -793,17 +793,17 @@ export function Composer(props: {
             (recognitionState.isAvailable ? ' · ramble' : '') +
             '...';
 
-  if (isDesktop && timeToShowTips) {
-    if (explainShiftEnter) textPlaceholder += !enterIsNewline ? '\n\n💡 Shift + Enter to add a new line' : '\n\n💡 Shift + Enter to send';
-    else if (explainAltEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Alt + Enter to just append the message');
-    else if (explainCtrlEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Ctrl + Enter to beam');
-  }
+  // if (isDesktop && timeToShowTips) {
+  //   if (explainShiftEnter) textPlaceholder += !enterIsNewline ? '\n\n💡 Shift + Enter to add a new line' : '\n\n💡 Shift + Enter to send';
+  //   else if (explainAltEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Alt + Enter to just append the message');
+  //   else if (explainCtrlEnter) textPlaceholder += platformAwareKeystrokes('\n\n💡 Tip: Ctrl + Enter to beam');
+  // }
 
   const stableGridSx: SxProps = React.useMemo(
     () => ({
       // basically a position:relative to enable the inner drop area
       ...dragContainerSx,
-      
+
       // This used to be in the outer box, but we put it here instead
       // p: { xs: 1, md: 2 },
     }),
@@ -815,7 +815,6 @@ export function Composer(props: {
       aria-label="User Message"
       component="section"
       sx={{
-        
         ...props.sx,
       }}
     >
@@ -825,49 +824,23 @@ export function Composer(props: {
         <Grid container onDragEnter={handleContainerDragEnter} onDragStart={handleContainerDragStart} spacing={{ xs: 1, md: 2 }} sx={stableGridSx}>
           {/* [Mobile: top, Desktop: left] */}
           <Grid xs={12} md={12}>
-            <Box sx={{ display: 'flex', alignItems: 'stretch' , 
-        backgroundColor: 'background.level1', 
-        borderRadius: '20px',
-        mx: '60px',
-        my: '16px',}}>
-              {/* [Mobile, Col1] Mic, Insert Multi-modal content, and Broadcast buttons */}
-              {isMobile && (
-                <Box sx={{ flexGrow: 0, display: 'grid', gap: 1 }}>
-                  {/* [mobile] Mic button */}
-                  {recognitionState.isAvailable && (
-                    <ButtonMicMemo variant={micVariant} color={micColor} errorMessage={recognitionState.errorMessage} onClick={handleToggleMic} />
-                  )}
-
-                  {/* Responsive Camera OCR button */}
-                  {showChatAttachments && <ButtonAttachCameraMemo isMobile onOpenCamera={openCamera} />}
-
-                  {/* [mobile] [+] button */}
-                  {showChatAttachments && (
-                    <Dropdown>
-                      <MenuButton slots={{ root: IconButton }}>
-                        <AddCircleOutlineIcon />
-                      </MenuButton>
-                      <Menu>
-                        {/* Responsive Open Files button */}
-                        <MenuItem>
-                          <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} fullWidth multiple />
-                        </MenuItem>
-
-                        {/* Responsive Paste button */}
-                        {supportsClipboardRead() && (
-                          <MenuItem>
-                            <ButtonAttachClipboardMemo onClick={attachAppendClipboardItems} />
-                          </MenuItem>
-                        )}
-                      </Menu>
-                    </Dropdown>
-                  )}
-
-                  {/* [Mobile] MultiChat button */}
-                  {props.isMulticast !== null && <ButtonMultiChatMemo isMobile multiChat={props.isMulticast} onSetMultiChat={props.setIsMulticast} />}
-                </Box>
-              )}
-
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'stretch',
+                backgroundColor: 'background.level1',
+                borderRadius: '20px',
+                maxWidth: {
+                  xs: '450px', // Small devices (mobile)
+                  sm: '600px', // Medium devices (tablet)
+                  md: '744px', // Large devices (desktop)
+                  lg: '744px', // Larger devices
+                },
+                justifyContent: 'center',
+                mx: 'auto',
+                my: '16px',
+              }}
+            >
               {/* [Desktop, Col1] Insert Multi-modal content buttons */}
               {isDesktop && showChatAttachments && (
                 <Box sx={{ flexGrow: 0, display: 'grid', gap: labsAttachScreenCapture && labsCameraDesktop ? 0.5 : 1 }}>
@@ -908,8 +881,9 @@ export function Composer(props: {
                       variant="outlined"
                       color={isDraw ? 'warning' : isReAct ? 'success' : undefined}
                       autoFocus
-                      minRows={isMobile ? 2 : agiAttachmentPrompts.hasData ? 2 : showChatInReferenceTo ? 2 : 3}
-                      maxRows={isMobile ? 8 : 10}
+                      // minRows={isMobile ? 2 : agiAttachmentPrompts.hasData ? 2 : showChatInReferenceTo ? 2 : 3}
+                      minRows={1}
+                      maxRows={isMobile ? 5 : 8}
                       placeholder={textPlaceholder}
                       value={composeText}
                       onChange={handleTextareaTextChange}
@@ -929,7 +903,7 @@ export function Composer(props: {
                         textarea: {
                           enterKeyHint: enterIsNewline ? 'enter' : 'send',
                           sx: {
-                            ...(recognitionState.isAvailable && { pr: { md: 5 }, p: { md: 1 } }),
+                            ...(recognitionState.isAvailable && { pr: { md: 5 }, px: { md: 1 }, pt: { md: 1 } }),
                             // mb: 0.5, // no need; the outer container already has enough p (for TokenProgressbar)
                           },
                           ref: composerTextAreaRef,
@@ -954,7 +928,7 @@ export function Composer(props: {
                         limit={tokenLimit}
                       />
                     )} */}
-
+                    {/* 
                     {!showChatInReferenceTo && tokenLimit > 0 && (
                       <TokenBadgeMemo
                         hideBelowDollars={0.0001}
@@ -968,7 +942,7 @@ export function Composer(props: {
                         showExcess
                         absoluteBottomRight
                       />
-                    )}
+                    )} */}
                   </Box>
 
                   {/* Mic & Mic Continuation Buttons */}
@@ -1044,7 +1018,7 @@ export function Composer(props: {
                   )}
 
                   {/* [Desktop, Col1] Insert Multi-modal content buttons */}
-                  {isDesktop  && (
+                  {isDesktop && (
                     <>
                       <Box
                         sx={{
@@ -1063,38 +1037,53 @@ export function Composer(props: {
                         {/*  Attach*/}
                         {/*</FormHelperText>*/}
                         <Box>
-                        {showChatAttachments &&( 
-                          <>
-                          {/* Responsive Open Files button */}
-                          <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} multiple />
+                          {showChatAttachments && (
+                            <>
+                              {/* Responsive Open Files button */}
+                              <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} multiple />
 
-                          {/* Responsive Paste button */}
-                          {supportsClipboardRead() && <ButtonAttachClipboardMemo onClick={attachAppendClipboardItems} />}
+                              {/* Responsive Paste button */}
+                              {supportsClipboardRead() && <ButtonAttachClipboardMemo onClick={attachAppendClipboardItems} />}
 
-                          {/* Responsive Screen Capture button */}
-                          {labsAttachScreenCapture && supportsScreenCapture && (
-                            <ButtonAttachScreenCaptureMemo onAttachScreenCapture={handleAttachScreenCapture} />
+                              {/* Responsive Screen Capture button */}
+                              {labsAttachScreenCapture && supportsScreenCapture && (
+                                <ButtonAttachScreenCaptureMemo onAttachScreenCapture={handleAttachScreenCapture} />
+                              )}
+
+                              {/* Responsive Camera OCR button */}
+                              {labsCameraDesktop && <ButtonAttachCameraMemo onOpenCamera={openCamera} />}
+
+                              {isDesktop && showChatExtras && !assistantAbortible && (
+                                <ButtonBeamMemo
+                                  color={beamButtonColor}
+                                  disabled={noConversation || noLLM}
+                                  hasContent={!!composeText}
+                                  onClick={handleSendTextBeamClicked}
+                                />
+                              )}
+
+                              {showChatExtras && <ButtonCallMemo disabled={noConversation || noLLM || assistantAbortible} onClick={handleCallClicked} />}
+                            </>
                           )}
-
-                          {/* Responsive Camera OCR button */}
-                          {labsCameraDesktop && <ButtonAttachCameraMemo onOpenCamera={openCamera} />}
-
-                          {isDesktop && showChatExtras && !assistantAbortible && (
-                            <ButtonBeamMemo
-                              color={beamButtonColor}
-                              disabled={noConversation || noLLM}
-                              hasContent={!!composeText}
-                              onClick={handleSendTextBeamClicked}
-                            />
-                          )}
-                          </>
-                        )}
                         </Box>
 
-                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end' , mr:1}}>
+                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end', mr: 1 }}>
                           {/* [desktop] Call secondary button */}
-                          {showChatExtras && <ButtonCallMemo disabled={noConversation || noLLM || assistantAbortible} onClick={handleCallClicked} />}
 
+                          {!showChatInReferenceTo && tokenLimit > 0 && (
+                            <TokenBadgeMemo
+                              hideBelowDollars={0.0001}
+                              chatPricing={tokenChatPricing}
+                              direct={tokensComposer}
+                              history={tokensHistory}
+                              responseMax={tokensResponseMax}
+                              limit={tokenLimit}
+                              showCost={labsShowCost}
+                              enableHover={!isMobile}
+                              showExcess
+                              absoluteBottomRight
+                            />
+                          )}
                           {/* [desktop] Draw Options secondary button */}
                           {isDraw && <ButtonOptionsDraw onClick={handleDrawOptionsClicked} />}
 
@@ -1241,6 +1230,163 @@ export function Composer(props: {
                   )}
                 </Box>
 
+                {/* for mobile */}
+                {isMobile && (
+                  <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'row', gap: 1, justifyContent: 'space-between' , px:"5px" }}>
+                    <Box>
+                      {/* [Mobile, Col1] Mic, Insert Multi-modal content, and Broadcast buttons */}
+                      {isMobile && (
+                        <Box sx={{ flexGrow: 0, display: 'flex', gap: 1, py: 1, pl: 1 }}>
+                          {/* [mobile] Mic button */}
+                          {recognitionState.isAvailable && (
+                            <ButtonMicMemo variant={micVariant} color={micColor} errorMessage={recognitionState.errorMessage} onClick={handleToggleMic} />
+                          )}
+
+                          {/* Responsive Camera OCR button */}
+                          {showChatAttachments && <ButtonAttachCameraMemo isMobile onOpenCamera={openCamera} />}
+
+                          {/* [mobile] [+] button */}
+                          {showChatAttachments && (
+                            <Dropdown>
+                              <MenuButton slots={{ root: IconButton }}>
+                                <AddCircleOutlineIcon />
+                              </MenuButton>
+                              <Menu>
+                                {/* Responsive Open Files button */}
+                                <MenuItem>
+                                  <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} fullWidth multiple />
+                                </MenuItem>
+
+                                {/* Responsive Paste button */}
+                                {supportsClipboardRead() && (
+                                  <MenuItem>
+                                    <ButtonAttachClipboardMemo onClick={attachAppendClipboardItems} />
+                                  </MenuItem>
+                                )}
+                              </Menu>
+                            </Dropdown>
+                          )}
+
+                          {/* [Mobile] MultiChat button */}
+                          {props.isMulticast !== null && <ButtonMultiChatMemo isMobile multiChat={props.isMulticast} onSetMultiChat={props.setIsMulticast} />}
+                        </Box>
+                      )}
+                    </Box>
+
+                    <Box>
+                      {isMobile && (
+                        <Grid xs={12} md={3}>
+                          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, height: '100%' } as const}>
+                            {/* [mobile] This row is here only for the [mobile] bottom-start corner item */}
+                            {/* [desktop] This column arrangement will have the [desktop] beam button right under call */}
+                            <Box sx={isMobile ? { display: 'flex' } : { display: 'grid', gap: 1 }}>
+                              {/* [mobile] bottom-corner secondary button */}
+                              {isMobile &&
+                                (showChatExtras ? (
+                                  <ButtonCallMemo isMobile disabled={noConversation || noLLM} onClick={handleCallClicked} />
+                                ) : isDraw ? (
+                                  <ButtonOptionsDraw isMobile onClick={handleDrawOptionsClicked} sx={{ mr: { xs: 1, md: 2 } }} />
+                                ) : (
+                                  <IconButton disabled sx={{ mr: { xs: 1, md: 2 } }} />
+                                ))}
+
+                              {/* Responsive Send/Stop buttons */}
+
+                              <ButtonGroup
+                                variant={sendButtonVariant}
+                                color={sendButtonColor}
+                                sx={{
+                                  flexGrow: 1,
+                                  backgroundColor: isMobile && sendButtonVariant === 'outlined' ? 'background.popup' : undefined,
+                                  boxShadow:
+                                    isMobile && sendButtonVariant !== 'outlined'
+                                      ? 'none'
+                                      : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
+                                }}
+                              >
+                                {!assistantAbortible ? (
+                                  <Button
+                                    key="composer-act"
+                                    fullWidth
+                                    disabled={noConversation || noLLM}
+                                    loading={sendStarted}
+                                    loadingPosition="end"
+                                    onClick={handleSendClicked}
+                                    // endDecorator={sendButtonIcon}
+                                    sx={{ '--Button-gap': '1rem' }}
+                                  >
+                                    {micContinuation && 'Voice '}
+                                    {sendButtonIcon}
+                                    {/* {sendButtonLabel} */}
+                                  </Button>
+                                ) : (
+                                  <Button
+                                    key="composer-stop"
+                                    fullWidth
+                                    variant="soft"
+                                    disabled={noConversation}
+                                    onClick={handleStopClicked}
+                                    // endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
+                                    sx={{ animation: `${animationEnterBelow} 0.1s ease-out` }}
+                                  >
+                                    <StopOutlinedIcon sx={{ fontSize: 18 }} />
+                                    {/* Stop */}
+                                  </Button>
+                                )}
+
+                                {/* [Beam] Open Beam */}
+                                {/*{isText && <Tooltip title='Open Beam'>*/}
+                                {/*  <IconButton variant='outlined' disabled={noConversation || noLLM} onClick={handleSendTextBeamClicked}>*/}
+                                {/*    <ChatBeamIcon />*/}
+                                {/*  </IconButton>*/}
+                                {/*</Tooltip>}*/}
+
+                                {/* [Draw] Imagine */}
+                                {isDraw && !!composeText && (
+                                  <Tooltip title="Generate an image prompt">
+                                    <IconButton variant="outlined" disabled={noConversation || noLLM} onClick={handleTextImagineClicked}>
+                                      <AutoAwesomeIcon />
+                                    </IconButton>
+                                  </Tooltip>
+                                )}
+
+                                {/* Mode expander */}
+                                <IconButton
+                                  variant={assistantAbortible ? 'soft' : isDraw ? undefined : undefined}
+                                  disabled={noConversation || noLLM || chatExecuteMenuShown}
+                                  onClick={showChatExecuteMenu}
+                                >
+                                  <ExpandLessIcon />
+                                </IconButton>
+                              </ButtonGroup>
+
+                              {/* [desktop] secondary-top buttons */}
+                              {/* {isDesktop && showChatExtras && !assistantAbortible && (
+                  <ButtonBeamMemo color={beamButtonColor} disabled={noConversation || noLLM} hasContent={!!composeText} onClick={handleSendTextBeamClicked} />
+                )} */}
+                            </Box>
+
+                            {/* [desktop] Multicast switch (under the Chat button) */}
+                            {isDesktop && props.isMulticast !== null && (
+                              <ButtonMultiChatMemo multiChat={props.isMulticast} onSetMultiChat={props.setIsMulticast} />
+                            )}
+
+                            {/* [desktop] secondary bottom-buttons (aligned to bottom for now, and mutually exclusive) */}
+                            {/* {isDesktop && ( */}
+                            {/* <Box sx={{ mt: 'auto', display: 'grid', gap: 1 }}> */}
+                            {/* [desktop] Call secondary button */}
+                            {/* {showChatExtras && <ButtonCallMemo disabled={noConversation || noLLM || assistantAbortible} onClick={handleCallClicked} />} */}
+
+                            {/* [desktop] Draw Options secondary button */}
+                            {/* {isDraw && <ButtonOptionsDraw onClick={handleDrawOptionsClicked} />} */}
+                            {/* </Box> */}
+                            {/* )} */}
+                          </Box>
+                        </Grid>
+                      )}
+                    </Box>
+                  </Box>
+                )}
                 {/* Render any Attachments & menu items */}
                 {!!conversationOverlayStore && showChatAttachments && (
                   <LLMAttachmentsList
@@ -1256,112 +1402,7 @@ export function Composer(props: {
           </Grid>
 
           {/* [Mobile: bottom, Desktop: right] */}
-          {isMobile && (
-            <Grid xs={12} md={3}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, height: '100%' } as const}>
-                {/* [mobile] This row is here only for the [mobile] bottom-start corner item */}
-                {/* [desktop] This column arrangement will have the [desktop] beam button right under call */}
-                <Box sx={isMobile ? { display: 'flex' } : { display: 'grid', gap: 1 }}>
-                  {/* [mobile] bottom-corner secondary button */}
-                  {isMobile &&
-                    (showChatExtras ? (
-                      <ButtonCallMemo isMobile disabled={noConversation || noLLM} onClick={handleCallClicked} />
-                    ) : isDraw ? (
-                      <ButtonOptionsDraw isMobile onClick={handleDrawOptionsClicked} sx={{ mr: { xs: 1, md: 2 } }} />
-                    ) : (
-                      <IconButton disabled sx={{ mr: { xs: 1, md: 2 } }} />
-                    ))}
 
-                  {/* Responsive Send/Stop buttons */}
-
-                  <ButtonGroup
-                    variant={sendButtonVariant}
-                    color={sendButtonColor}
-                    sx={{
-                      flexGrow: 1,
-                      backgroundColor: isMobile && sendButtonVariant === 'outlined' ? 'background.popup' : undefined,
-                      boxShadow:
-                        isMobile && sendButtonVariant !== 'outlined' ? 'none' : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
-                    }}
-                  >
-                    {!assistantAbortible ? (
-                      <Button
-                        key="composer-act"
-                        fullWidth
-                        disabled={noConversation || noLLM}
-                        loading={sendStarted}
-                        loadingPosition="end"
-                        onClick={handleSendClicked}
-                        // endDecorator={sendButtonIcon}
-                        sx={{ '--Button-gap': '1rem' }}
-                      >
-                        {micContinuation && 'Voice '}
-                        {sendButtonIcon}
-                        {/* {sendButtonLabel} */}
-                      </Button>
-                    ) : (
-                      <Button
-                        key="composer-stop"
-                        fullWidth
-                        variant="soft"
-                        disabled={noConversation}
-                        onClick={handleStopClicked}
-                        // endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
-                        sx={{ animation: `${animationEnterBelow} 0.1s ease-out` }}
-                      >
-                        <StopOutlinedIcon sx={{ fontSize: 18 }} />
-                        {/* Stop */}
-                      </Button>
-                    )}
-
-                    {/* [Beam] Open Beam */}
-                    {/*{isText && <Tooltip title='Open Beam'>*/}
-                    {/*  <IconButton variant='outlined' disabled={noConversation || noLLM} onClick={handleSendTextBeamClicked}>*/}
-                    {/*    <ChatBeamIcon />*/}
-                    {/*  </IconButton>*/}
-                    {/*</Tooltip>}*/}
-
-                    {/* [Draw] Imagine */}
-                    {isDraw && !!composeText && (
-                      <Tooltip title="Generate an image prompt">
-                        <IconButton variant="outlined" disabled={noConversation || noLLM} onClick={handleTextImagineClicked}>
-                          <AutoAwesomeIcon />
-                        </IconButton>
-                      </Tooltip>
-                    )}
-
-                    {/* Mode expander */}
-                    <IconButton
-                      variant={assistantAbortible ? 'soft' : isDraw ? undefined : undefined}
-                      disabled={noConversation || noLLM || chatExecuteMenuShown}
-                      onClick={showChatExecuteMenu}
-                    >
-                      <ExpandLessIcon />
-                    </IconButton>
-                  </ButtonGroup>
-
-                  {/* [desktop] secondary-top buttons */}
-                  {/* {isDesktop && showChatExtras && !assistantAbortible && (
-                  <ButtonBeamMemo color={beamButtonColor} disabled={noConversation || noLLM} hasContent={!!composeText} onClick={handleSendTextBeamClicked} />
-                )} */}
-                </Box>
-
-                {/* [desktop] Multicast switch (under the Chat button) */}
-                {isDesktop && props.isMulticast !== null && <ButtonMultiChatMemo multiChat={props.isMulticast} onSetMultiChat={props.setIsMulticast} />}
-
-                {/* [desktop] secondary bottom-buttons (aligned to bottom for now, and mutually exclusive) */}
-                {/* {isDesktop && ( */}
-                {/* <Box sx={{ mt: 'auto', display: 'grid', gap: 1 }}> */}
-                {/* [desktop] Call secondary button */}
-                {/* {showChatExtras && <ButtonCallMemo disabled={noConversation || noLLM || assistantAbortible} onClick={handleCallClicked} />} */}
-
-                {/* [desktop] Draw Options secondary button */}
-                {/* {isDraw && <ButtonOptionsDraw onClick={handleDrawOptionsClicked} />} */}
-                {/* </Box> */}
-                {/* )} */}
-              </Box>
-            </Grid>
-          )}
           {/* overlay: Drag & Drop*/}
           {dropComponent}
         </Grid>

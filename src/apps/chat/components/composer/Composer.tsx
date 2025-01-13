@@ -902,7 +902,7 @@ export function Composer(props: {
                         textarea: {
                           enterKeyHint: enterIsNewline ? 'enter' : 'send',
                           sx: {
-                            ...(recognitionState.isAvailable && { pr: { md: 5 }, px: { md: 1 }, pt: { md: 1 } }),
+                            ...(recognitionState.isAvailable && { pr: { md: 5 }, px: { md: 1.5 }, pt: { md: 1 } }),
                             // mb: 0.5, // no need; the outer container already has enough p (for TokenProgressbar)
                           },
                           ref: composerTextAreaRef,

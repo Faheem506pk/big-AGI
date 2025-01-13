@@ -838,7 +838,7 @@ export function Composer(props: {
                 },
                 justifyContent: 'center',
                 mx: 'auto',
-                my: '16px',
+                mb: '16px',
               }}
             >
               {/* [Desktop, Col1] Insert Multi-modal content buttons */}

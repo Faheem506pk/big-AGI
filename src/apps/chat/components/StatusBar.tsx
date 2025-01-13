@@ -47,8 +47,11 @@ const hideButtonSx: SxProps = {
 
 const StatusBarContainer = styled(Box)({
   borderBottom: '1px solid',
+  borderTop: '1px solid',
+  marginBottom:"14px",
   // borderBottomColor: 'var(--joy-palette-divider)',
   borderBottomColor: 'rgba(var(--joy-palette-neutral-mainChannel) / 0.1)',
+  borderTopColor: 'rgba(var(--joy-palette-neutral-mainChannel, 99 107 116) / 0.4)',
   // borderTopColor: 'rgba(var(--joy-palette-neutral-mainChannel, 99 107 116) / 0.4)',
   // backgroundColor: 'var(--joy-palette-background-surface)',
   // paddingBlock: '0.25rem',
@@ -202,7 +205,7 @@ export function StatusBar(props: { toggleMinimized?: () => void, isMinimized?: b
     return null;
 
   return (
-    <StatusBarContainer aria-label='Status bar'>
+    <StatusBarContainer aria-label='Status bar' sx={{display:"flex", justifyContent:"center"}}>
 
       {(!props.toggleMinimized || !COMPOSER_ENABLE_MINIMIZE) && !props.isMinimized ? (
         // Close Button

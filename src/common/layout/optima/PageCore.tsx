@@ -18,6 +18,8 @@ const pageCoreSx: SxProps = {
 };
 
 const pageCoreBarSx: SxProps = {
+  display:"flex",
+  p:1,
   zIndex: themeZIndexPageBar,
 };
 

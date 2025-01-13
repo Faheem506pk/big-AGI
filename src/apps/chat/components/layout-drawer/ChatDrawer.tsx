@@ -33,6 +33,7 @@ import { ChatFolderList } from './folders/ChatFolderList';
 import { ChatNavGrouping, ChatSearchDepth, ChatSearchSorting, isDrawerSearching, useChatDrawerRenderItems } from './useChatDrawerRenderItems';
 import { ClearFolderText } from '../layout-bar/useFolderDropdown';
 import { useChatDrawerFilters } from '../../store-app-chat';
+import { KeyStroke } from '~/common/components/KeyStroke';
 
 
 // this is here to make shallow comparisons work on the next hook
@@ -98,6 +99,11 @@ function ChatDrawer(props: {
   const [uiComplexityMode, contentScaling] = useUIPreferencesStore(useShallow((state) => [state.complexityMode, state.contentScaling]));
   const zenMode = uiComplexityMode === 'minimal';
   const gifMode = uiComplexityMode === 'extra';
+
+
+const ImportLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Import</Box>;
+const ExportLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Export</Box>;
+const ChatDeleteLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Delete {filteredChatsCount >= 2 ? `all ${filteredChatsCount} chats` : 'chat'}</Box>;
 
 
   // New/Activate/Delete Conversation
@@ -405,33 +411,36 @@ function ChatDrawer(props: {
         )}
       </Box>
 
-      <ListDivider sx={{ my: 0 }} />
+      {/* <ListDivider sx={{ my: 0 }} /> */}
 
       {/* Bottom commands */}
-      <Box sx={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-        <ListItemButton onClick={props.onConversationsImportDialog} sx={{ flex: 1 }}>
-          <ListItemDecorator>
+      <Box sx={{ display: 'flex', alignItems: 'center' , justifyContent:"center"}}>
+        <Tooltip arrow disableInteractive placement='top' title={ImportLegend}>
+
+        <ListItemButton onClick={props.onConversationsImportDialog} >
+        
             <FileDownloadOutlinedIcon />
-          </ListItemDecorator>
-          Import
+          {/* Import */}
           {/*<OpenAIIcon sx={{  ml: 'auto' }} />*/}
         </ListItemButton>
-
-        <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsExport} sx={{ flex: 1 }}>
-          <ListItemDecorator>
+        </Tooltip>
+        <Tooltip arrow disableInteractive placement='top' title={ExportLegend}>
+        <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsExport} >
+        
             <FileUploadOutlinedIcon />
-          </ListItemDecorator>
-          Export
+          {/* Export */}
         </ListItemButton>
-      </Box>
+      </Tooltip>
+      
 
+      <Tooltip arrow disableInteractive placement='top' title={ChatDeleteLegend}>
       <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsDeleteFiltered}>
-        <ListItemDecorator>
+        
           <DeleteOutlineIcon />
-        </ListItemDecorator>
-        Delete {filteredChatsCount >= 2 ? `all ${filteredChatsCount} chats` : 'chat'}
+        {/* Delete {filteredChatsCount >= 2 ? `all ${filteredChatsCount} chats` : 'chat'} */}
       </ListItemButton>
-
+      </Tooltip>
+      </Box>
     </OptimaDrawerList>
 
 

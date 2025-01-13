@@ -414,7 +414,7 @@ const ChatDeleteLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Del
       {/* <ListDivider sx={{ my: 0 }} /> */}
 
       {/* Bottom commands */}
-      <Box sx={{ display: 'flex', alignItems: 'center' , justifyContent:"center"}}>
+      <Box sx={{ display: 'flex', alignItems: 'center' , justifyContent:"center", py:1.2}}>
         <Tooltip arrow disableInteractive placement='top' title={ImportLegend}>
 
         <ListItemButton onClick={props.onConversationsImportDialog} >

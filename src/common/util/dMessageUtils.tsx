@@ -32,7 +32,6 @@ export const avatarIconSx = {
   borderRadius: 'sm',
   height: 36,
   width: 36,
-  paddingInline:"0.5rem",
 } as const;
 
 const largerAvatarIconsSx = {

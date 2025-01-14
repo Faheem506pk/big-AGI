@@ -636,11 +636,15 @@ export function ChatMessage(props: {
     }),
     [adjContentScaling, backgroundColor, isEditingText, isUserMessageSkipped, isUserStarred, isVndAndCacheAuto, isVndAndCacheUser, props.sx, uiComplexityMode],
   );
+  const ToolButtonSx: SxProps = {
+    paddingInline: 0.5,
+  };
+  const ButtoniconSx = "18px";
   const editLayoutSx: SxProps = {
     display: 'flex',
-    gap: 1, // see why we give more space on ChatMessage
+    gap: 0, // see why we give more space on ChatMessage
     maxWidth: '744px',
-    paddingInline: 0.5,
+
     // horizontal separator between messages (second part+ and before)
     // '& > *:not(:first-of-type)': {
     //   borderTop: '1px solid',
@@ -822,34 +826,36 @@ export function ChatMessage(props: {
               // sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}
               sx={isEditingText ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx}
             >
-              <IconButton onClick={handleOpsCopy} >
-                <ContentCopyIcon />
+              <IconButton onClick={handleOpsCopy} sx={ToolButtonSx} size="sm">
+                <ContentCopyIcon  sx={{ fontSize: ButtoniconSx }} />
               </IconButton>
 
               {!!props.onMessageDelete && (
-                <IconButton onClick={handleOpsDelete} disabled={false /*fromSystem*/}>
-                  <DeleteOutlineIcon />
+                <IconButton onClick={handleOpsDelete} disabled={false /*fromSystem*/} sx={ToolButtonSx} size="sm">
+                  <DeleteOutlineIcon   sx={{ fontSize: ButtoniconSx }}/>
                 </IconButton>
               )}
 
               {fromUser && !zenMode && (
                 <>
                   {!!props.onMessageFragmentReplace && (
-                    <IconButton variant="plain" disabled={!!messagePendingIncomplete} onClick={handleOpsEditToggle} >
-                      {isEditingText ? <CloseRoundedIcon /> : <EditRoundedIcon />}
+                    <IconButton variant="plain" disabled={!!messagePendingIncomplete} onClick={handleOpsEditToggle} size="sm">
+                      {isEditingText ? <CloseRoundedIcon  sx={{ fontSize: ButtoniconSx }}/> : <EditRoundedIcon  sx={{ fontSize: ButtoniconSx }}/>}
                       {/* {isEditingText ? 'Discard' : 'Edit'} */}
                     </IconButton>
                   )}
                 </>
               )}
 
-              {fromAssistant && !zenMode && (<>
-                {!!props.onMessageAssistantFrom && (
-            <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom}>
-              <ReplayIcon  /> 
-            </IconButton>
-          )}
-              </>)}
+              {fromAssistant && !zenMode && (
+                <>
+                  {!!props.onMessageAssistantFrom && (
+                    <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom} size="sm">
+                      <ReplayIcon  sx={{ fontSize: ButtoniconSx }}/>
+                    </IconButton>
+                  )}
+                </>
+              )}
               {/* Persona Avatar or Menu Button */}
               <Box
                 onClick={(event) => {
@@ -867,9 +873,12 @@ export function ChatMessage(props: {
                     size="sm"
                     variant={opsMenuAnchor ? 'solid' : zenMode && fromAssistant ? 'plain' : 'plain'}
                     color={fromAssistant || fromSystem ? 'neutral' : 'neutral'}
-                    sx={avatarIconSx}
+                    sx={{
+                      paddingInline: "0px !important",
+                      paddingBlock: 0,
+                      ...avatarIconSx}}
                   >
-                    <MoreVertIcon />
+                    <MoreVertIcon  sx={{ fontSize: ButtoniconSx}}/>
                   </IconButton>
                 )}
               </Box>

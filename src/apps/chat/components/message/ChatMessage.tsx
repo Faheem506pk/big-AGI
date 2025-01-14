@@ -619,7 +619,8 @@ justifyContent: 'center',
 
         {/* [start-Avatar] Avatar (Persona) */}
         {!props.hideAvatar && !isEditingText && (
-          <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
+          // <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
+          <Box sx={ messageAsideColumnSx}>
 
             {/* Persona Avatar or Menu Button */}
             <Box

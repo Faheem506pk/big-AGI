@@ -746,7 +746,7 @@ export function Composer(props: {
   const showChatInReferenceTo = !!inReferenceTo?.length;
   const showChatExtras = isText && !showChatInReferenceTo;
 
-  const sendButtonVariant: VariantProp = isAppend || (isMobile && isTextBeam) ? 'outlined' : 'solid';
+  const sendButtonVariant: VariantProp = isAppend || (isMobile && isTextBeam) ? 'plain' : 'plain';
 
   const sendButtonColor: ColorPaletteProp = assistantAbortible
     ? 'warning'
@@ -953,7 +953,7 @@ export function Composer(props: {
                         right: 0,
                         zIndex: zIndexComposerOverlayMic + 1,
                         mt: isDesktop ? 1.5 : 0.25,
-                        mr: isDesktop ? 2 : 0.25,
+                        mr: isDesktop ? 1.5 : 0.25,
                         display: 'flex',
                         flexDirection: 'column',
                         gap: isDesktop ? 1 : 0.25,
@@ -1024,8 +1024,8 @@ export function Composer(props: {
                           zIndex: zIndexComposerOverlayMic + 1,
                           mt: isDesktop ? 1 : 0.25,
                           mb: isDesktop ? 1 : 0.25,
-                          mr: isDesktop ? 1 : 0.25,
-                          ml: isDesktop ? 1 : 0.25,
+                          mr: isDesktop ? 1.5 : 0.25,
+                          ml: isDesktop ? 1.5 : 0.25,
                           display: 'flex',
                           flexDirection: 'row',
                           justifyContent: 'space-between',
@@ -1066,7 +1066,7 @@ export function Composer(props: {
                           )}
                         </Box>
 
-                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end', mr: 1 }}>
+                        <Box sx={{ mt: 'auto', display: 'flex', gap: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
                           {/* [desktop] Call secondary button */}
 
                           {!showChatInReferenceTo && tokenLimit > 0 && (
@@ -1091,12 +1091,14 @@ export function Composer(props: {
                             variant={sendButtonVariant}
                             color={sendButtonColor}
                             sx={{
-                              flexGrow: 1,
-                              backgroundColor: isMobile && sendButtonVariant === 'outlined' ? 'background.popup' : undefined,
-                              boxShadow:
-                                isMobile && sendButtonVariant !== 'outlined'
-                                  ? 'none'
-                                  : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
+                              '--ButtonGroup-separatorColor': 'none',
+                             
+                              // flexGrow: 1,
+                              // backgroundColor: isMobile && sendButtonVariant === 'outlined' ? 'background.popup' : undefined,
+                              // boxShadow:
+                              //   isMobile && sendButtonVariant !== 'outlined'
+                              //     ? 'none'
+                              //     : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
                             }}
                           >
                             {!assistantAbortible ? (
@@ -1108,7 +1110,7 @@ export function Composer(props: {
                                 loadingPosition="end"
                                 onClick={handleSendClicked}
                                 // endDecorator={sendButtonIcon}
-                                sx={{ '--Button-gap': '1rem' }}
+                                sx={{ '--Button-gap': '1rem',  paddingInline:"0.6rem", }}
                               >
                                 {micContinuation && 'Voice '}
                                 {sendButtonIcon}
@@ -1118,7 +1120,7 @@ export function Composer(props: {
                               <Button
                                 key="composer-stop"
                                 fullWidth
-                                variant="soft"
+                                variant="plain"
                                 disabled={noConversation}
                                 onClick={handleStopClicked}
                                 // endDecorator={<StopOutlinedIcon sx={{ fontSize: 18 }} />}
@@ -1139,7 +1141,7 @@ export function Composer(props: {
                             {/* [Draw] Imagine */}
                             {isDraw && !!composeText && (
                               <Tooltip title="Generate an image prompt">
-                                <IconButton variant="outlined" disabled={noConversation || noLLM} onClick={handleTextImagineClicked}>
+                                <IconButton variant="plain" disabled={noConversation || noLLM} onClick={handleTextImagineClicked}>
                                   <AutoAwesomeIcon />
                                 </IconButton>
                               </Tooltip>
@@ -1147,7 +1149,7 @@ export function Composer(props: {
 
                             {/* Mode expander */}
                             <IconButton
-                              variant={assistantAbortible ? 'soft' : isDraw ? undefined : undefined}
+                              variant={assistantAbortible ? 'plain' : isDraw ? undefined : undefined}
                               disabled={noConversation || noLLM || chatExecuteMenuShown}
                               onClick={showChatExecuteMenu}
                             >
@@ -1295,12 +1297,13 @@ export function Composer(props: {
                                 variant={sendButtonVariant}
                                 color={sendButtonColor}
                                 sx={{
-                                  flexGrow: 1,
-                                  backgroundColor: isMobile && sendButtonVariant === 'outlined' ? 'background.popup' : undefined,
-                                  boxShadow:
-                                    isMobile && sendButtonVariant !== 'outlined'
-                                      ? 'none'
-                                      : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
+                                  '--ButtonGroup-separatorColor': 'none',
+                                  // flexGrow: 1,
+                                  // backgroundColor: isMobile && sendButtonVariant === 'plain' ? 'background.popup' : undefined,
+                                  // boxShadow:
+                                  //   isMobile && sendButtonVariant !== 'plain'
+                                  //     ? 'none'
+                                  //     : `0 8px 24px -4px rgb(var(--joy-palette-${sendButtonColor}-mainChannel) / 20%)`,
                                 }}
                               >
                                 {!assistantAbortible ? (

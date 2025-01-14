@@ -16,6 +16,7 @@ export const messageAsideColumnSx: SxProps = {
   maxWidth: 80,
   textAlign: 'center',
   // layout
+
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

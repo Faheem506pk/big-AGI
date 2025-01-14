@@ -243,7 +243,7 @@ export function PersonaSelector(props: {
 
   return (
     <Box sx={{
-      maxWidth: 'md',
+      maxWidth: '800px',
       minWidth: `${2 + 1 + tileSize * 2}rem`, // accomodate at least 2 columns (scroll-x in case)
       mx: 'auto',
       minHeight: '60svh',

@@ -639,7 +639,7 @@ export function ChatMessage(props: {
   const ToolButtonSx: SxProps = {
     paddingInline: 0.5,
   };
-  const ButtoniconSx = "18px";
+  const ButtoniconSx = '18px';
   const editLayoutSx: SxProps = {
     display: 'flex',
     gap: 0, // see why we give more space on ChatMessage
@@ -797,94 +797,105 @@ export function ChatMessage(props: {
           )}
 
           {/* Content Fragments */}
-          <ContentFragments
-            fragments={contentOrVoidFragments}
-            showEmptyNotice={!messageFragments.length && !messagePendingIncomplete}
-            contentScaling={adjContentScaling}
-            uiComplexityMode={uiComplexityMode}
-            fitScreen={props.fitScreen}
-            isMobile={props.isMobile}
-            messageRole={messageRole}
-            optiAllowSubBlocksMemo={!!messagePendingIncomplete}
-            disableMarkdownText={disableMarkdown || fromUser /* User messages are edited as text. Try to have them in plain text. NOTE: This may bite. */}
-            showUnsafeHtmlCode={props.showUnsafeHtmlCode}
-            enhanceCodeBlocks={labsEnhanceCodeBlocks}
-            textEditsState={textContentEditState}
-            setEditedText={!props.onMessageFragmentReplace || messagePendingIncomplete ? undefined : handleEditSetText}
-            onEditsApply={handleApplyAllEdits}
-            onEditsCancel={handleEditsCancel}
-            onFragmentBlank={handleFragmentNew}
-            onFragmentDelete={handleFragmentDelete}
-            onFragmentReplace={handleFragmentReplace}
-            onMessageDelete={props.onMessageDelete ? handleOpsDelete : undefined}
-            onContextMenu={props.onMessageFragmentReplace && ENABLE_CONTEXT_MENU ? handleBlocksContextMenu : undefined}
-            onDoubleClick={props.onMessageFragmentReplace /*&& doubleClickToEdit disabled, as we may have shift too */ ? handleBlocksDoubleClick : undefined}
-          />
-
-          {!props.hideAvatar && !isEditingText && (
+          <Box onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+            <ContentFragments
+              fragments={contentOrVoidFragments}
+              showEmptyNotice={!messageFragments.length && !messagePendingIncomplete}
+              contentScaling={adjContentScaling}
+              uiComplexityMode={uiComplexityMode}
+              fitScreen={props.fitScreen}
+              isMobile={props.isMobile}
+              messageRole={messageRole}
+              optiAllowSubBlocksMemo={!!messagePendingIncomplete}
+              disableMarkdownText={disableMarkdown || fromUser /* User messages are edited as text. Try to have them in plain text. NOTE: This may bite. */}
+              showUnsafeHtmlCode={props.showUnsafeHtmlCode}
+              enhanceCodeBlocks={labsEnhanceCodeBlocks}
+              textEditsState={textContentEditState}
+              setEditedText={!props.onMessageFragmentReplace || messagePendingIncomplete ? undefined : handleEditSetText}
+              onEditsApply={handleApplyAllEdits}
+              onEditsCancel={handleEditsCancel}
+              onFragmentBlank={handleFragmentNew}
+              onFragmentDelete={handleFragmentDelete}
+              onFragmentReplace={handleFragmentReplace}
+              onMessageDelete={props.onMessageDelete ? handleOpsDelete : undefined}
+              onContextMenu={props.onMessageFragmentReplace && ENABLE_CONTEXT_MENU ? handleBlocksContextMenu : undefined}
+              onDoubleClick={props.onMessageFragmentReplace /*&& doubleClickToEdit disabled, as we may have shift too */ ? handleBlocksDoubleClick : undefined}
+            />
             <Box
-              // sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}
-              sx={isEditingText ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx}
+              sx={{
+                height: 20,
+              }}
             >
-              <IconButton onClick={handleOpsCopy} sx={ToolButtonSx} size="sm">
-                <ContentCopyIcon  sx={{ fontSize: ButtoniconSx }} />
-              </IconButton>
-
-              {!!props.onMessageDelete && (
-                <IconButton onClick={handleOpsDelete} disabled={false /*fromSystem*/} sx={ToolButtonSx} size="sm">
-                  <DeleteOutlineIcon   sx={{ fontSize: ButtoniconSx }}/>
-                </IconButton>
-              )}
-
-              {fromUser && !zenMode && (
+              {!props.hideAvatar && !isEditingText && (
                 <>
-                  {!!props.onMessageFragmentReplace && (
-                    <IconButton variant="plain" disabled={!!messagePendingIncomplete} onClick={handleOpsEditToggle} size="sm">
-                      {isEditingText ? <CloseRoundedIcon  sx={{ fontSize: ButtoniconSx }}/> : <EditRoundedIcon  sx={{ fontSize: ButtoniconSx }}/>}
-                      {/* {isEditingText ? 'Discard' : 'Edit'} */}
-                    </IconButton>
+                  {isHovering && (
+                    <>
+                      <Box
+                        // sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}
+                        sx={isEditingText ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx}
+                      >
+                        <IconButton onClick={handleOpsCopy} sx={ToolButtonSx} size="sm">
+                          <ContentCopyIcon sx={{ fontSize: ButtoniconSx }} />
+                        </IconButton>
+
+                        {!!props.onMessageDelete && (
+                          <IconButton onClick={handleOpsDelete} disabled={false /*fromSystem*/} sx={ToolButtonSx} size="sm">
+                            <DeleteOutlineIcon sx={{ fontSize: ButtoniconSx }} />
+                          </IconButton>
+                        )}
+
+                        {fromUser && !zenMode && (
+                          <>
+                            {!!props.onMessageFragmentReplace && (
+                              <IconButton variant="plain" disabled={!!messagePendingIncomplete} onClick={handleOpsEditToggle} size="sm">
+                                {isEditingText ? <CloseRoundedIcon sx={{ fontSize: ButtoniconSx }} /> : <EditRoundedIcon sx={{ fontSize: ButtoniconSx }} />}
+                                {/* {isEditingText ? 'Discard' : 'Edit'} */}
+                              </IconButton>
+                            )}
+                          </>
+                        )}
+
+                        {fromAssistant && !zenMode && (
+                          <>
+                            {!!props.onMessageAssistantFrom && (
+                              <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom} size="sm">
+                                <ReplayIcon sx={{ fontSize: ButtoniconSx }} />
+                              </IconButton>
+                            )}
+                          </>
+                        )}
+                        {/* Persona Avatar or Menu Button */}
+                        <Box
+                          onClick={(event) => {
+                            // [DEBUG][PROD] shift+click to dump the DMessage
+                            event.shiftKey && console.log('message', props.message);
+                            handleOpsMenuToggle(event);
+                          }}
+                          onContextMenu={handleOpsMenuToggle}
+                          onMouseEnter={props.isMobile ? undefined : () => setIsHovering(false)}
+                          onMouseLeave={props.isMobile ? undefined : () => setIsHovering(false)}
+                          sx={personaAvatarOrMenuSx}
+                        >
+                          <IconButton
+                            size="sm"
+                            variant={opsMenuAnchor ? 'solid' : zenMode && fromAssistant ? 'plain' : 'plain'}
+                            color={fromAssistant || fromSystem ? 'neutral' : 'neutral'}
+                            sx={{
+                              paddingInline: '0px !important',
+                              paddingBlock: 0,
+                              ...avatarIconSx,
+                            }}
+                          >
+                            <MoreVertIcon sx={{ fontSize: ButtoniconSx }} />
+                          </IconButton>
+                        </Box>
+                      </Box>
+                    </>
                   )}
                 </>
               )}
-
-              {fromAssistant && !zenMode && (
-                <>
-                  {!!props.onMessageAssistantFrom && (
-                    <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom} size="sm">
-                      <ReplayIcon  sx={{ fontSize: ButtoniconSx }}/>
-                    </IconButton>
-                  )}
-                </>
-              )}
-              {/* Persona Avatar or Menu Button */}
-              <Box
-                onClick={(event) => {
-                  // [DEBUG][PROD] shift+click to dump the DMessage
-                  event.shiftKey && console.log('message', props.message);
-                  handleOpsMenuToggle(event);
-                }}
-                onContextMenu={handleOpsMenuToggle}
-                onMouseEnter={props.isMobile ? undefined : () => setIsHovering(false)}
-                onMouseLeave={props.isMobile ? undefined : () => setIsHovering(false)}
-                sx={personaAvatarOrMenuSx}
-              >
-                {!isHovering && (
-                  <IconButton
-                    size="sm"
-                    variant={opsMenuAnchor ? 'solid' : zenMode && fromAssistant ? 'plain' : 'plain'}
-                    color={fromAssistant || fromSystem ? 'neutral' : 'neutral'}
-                    sx={{
-                      paddingInline: "0px !important",
-                      paddingBlock: 0,
-                      ...avatarIconSx}}
-                  >
-                    <MoreVertIcon  sx={{ fontSize: ButtoniconSx}}/>
-                  </IconButton>
-                )}
-              </Box>
             </Box>
-          )}
-
+          </Box>
           {/* Document Fragments */}
           {nonImageAttachments.length >= 1 && (
             <DocumentAttachmentFragments

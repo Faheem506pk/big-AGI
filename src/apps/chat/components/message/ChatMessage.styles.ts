@@ -3,6 +3,27 @@ import type { SxProps } from '@mui/joy/styles/types';
 import { animationColorRainbow } from '~/common/util/animUtils';
 
 
+// export const messageAsideColumnSx: SxProps = {
+ 
+//   position: 'sticky',
+//   top: '0.25rem',
+
+  
+//   minWidth: { xs: 50, md: 64 },
+//   maxWidth: 80,
+//   textAlign: 'center',
+ 
+
+//   display: 'flex',
+//   flexDirection: 'column',
+//   alignItems: 'center',
+//   gap: 0.25, 
+
+  
+//   '&.msg-edit-button': {
+//     gap: 0.25,
+//   },
+// };
 export const messageAsideColumnSx: SxProps = {
   // make this stick to the top of the screen
   position: 'sticky',
@@ -19,7 +40,7 @@ export const messageAsideColumnSx: SxProps = {
 
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'flex-end',
   gap: 0.25, // 2024-08-24: added, space the avatar icon from the label
 
   // when with the 'edit-button' class

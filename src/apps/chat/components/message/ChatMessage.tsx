@@ -657,6 +657,7 @@ export function ChatMessage(props: {
     justifyContent: 'flex-start',
     marginRight: 'auto',
     paddingRight: 3,
+    paddingLeft: 2,
   };
 
   const endLayoutSx: SxProps = {
@@ -716,7 +717,8 @@ export function ChatMessage(props: {
       <Box role={undefined /* aside | message | ops */} sx={fromAssistant && !isEditingText ? messageBodySx : messageBodyReverseSx}>
         {/* [start-Avatar] Avatar (Persona) */}
         {!props.hideAvatar && !isEditingText && (
-          <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
+          // <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
+          <Box sx={ messageAsideColumnSx}>
             {/* <Box
               onClick={(event) => {
                 
@@ -742,13 +744,18 @@ export function ChatMessage(props: {
               )}
             </Box> */}
 
-            {fromAssistant && !zenMode && (
+            {/* {fromAssistant && !zenMode && (
               <TooltipOutlined asLargePane enableInteractive title={messageAvatarTooltip} placement="bottom-start">
                 <Typography level="body-xs" sx={messagePendingIncomplete ? messageAvatarLabelAnimatedSx : messageAvatarLabelSx}>
                   {messageAvatarLabel}
                 </Typography>
               </TooltipOutlined>
-            )}
+            )} */}
+            {fromAssistant  && (
+              <>
+              <img src="/icons/Icon_Colored.png" alt="" style={{width: 20, height: 20}} />
+              </>
+              )}
           </Box>
         )}
 
@@ -844,7 +851,7 @@ export function ChatMessage(props: {
                           </IconButton>
                         )}
 
-                        {fromUser && !zenMode && (
+                        {fromUser  && (
                           <>
                             {!!props.onMessageFragmentReplace && (
                               <IconButton variant="plain" disabled={!!messagePendingIncomplete} onClick={handleOpsEditToggle} size="sm">
@@ -855,7 +862,7 @@ export function ChatMessage(props: {
                           </>
                         )}
 
-                        {fromAssistant && !zenMode && (
+                        {fromAssistant  && (
                           <>
                             {!!props.onMessageAssistantFrom && (
                               <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom} size="sm">
@@ -872,8 +879,6 @@ export function ChatMessage(props: {
                             handleOpsMenuToggle(event);
                           }}
                           onContextMenu={handleOpsMenuToggle}
-                          onMouseEnter={props.isMobile ? undefined : () => setIsHovering(false)}
-                          onMouseLeave={props.isMobile ? undefined : () => setIsHovering(false)}
                           sx={personaAvatarOrMenuSx}
                         >
                           <IconButton

@@ -843,7 +843,13 @@ export function ChatMessage(props: {
                 </>
               )}
 
-              {fromAssistant && !zenMode && <></>}
+              {fromAssistant && !zenMode && (<>
+                {!!props.onMessageAssistantFrom && (
+            <IconButton disabled={fromSystem} onClick={handleOpsAssistantFrom}>
+              <ReplayIcon  /> 
+            </IconButton>
+          )}
+              </>)}
               {/* Persona Avatar or Menu Button */}
               <Box
                 onClick={(event) => {

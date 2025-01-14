@@ -23,7 +23,7 @@ function ButtonAttachClipboard(props: { isMobile?: boolean; onClick: () => void 
       <ContentPasteGoIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive variant="solid" placement="top-start" title={pasteClipboardLegend}>
+    <Tooltip disableInteractive variant="solid"  arrow  placement="top-start" title={pasteClipboardLegend}>
       <Button
         variant="plain"
         color="neutral"

@@ -15,7 +15,8 @@ const desktopLegend = (
   </Box>
 );
 
-const desktopLegendNoContent = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Enter the text to Beam, then press this</Box>;
+const desktopLegendNoContent = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>
+  <b>text to Beam</b><br />Enter the text to Beam, then press this</Box>;
 
 const mobileSx: SxProps = {
   mr: { xs: 1, md: 2 },
@@ -39,7 +40,7 @@ function ButtonBeam(props: { isMobile?: boolean; color?: ColorPaletteProp; disab
       <ChatBeamIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive arrow placement="right" title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
+    <Tooltip disableInteractive arrow placement="top-start" title={props.hasContent ? desktopLegend : desktopLegendNoContent}>
       <Button
         variant="plain"
         color="neutral"

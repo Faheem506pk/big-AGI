@@ -4,7 +4,12 @@ import { Box, Button, IconButton, Tooltip } from '@mui/joy';
 import { SxProps } from '@mui/joy/styles/types';
 import CallIcon from '@mui/icons-material/Call';
 
-const callConversationLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>Quick call regarding this chat</Box>;
+const callConversationLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' }}>
+  <b>Quick call</b><br />
+  <Box >
+    Quick call regarding this chat
+   </Box>
+</Box>;
 
 const mobileSx: SxProps = {
   mr: { xs: 1, md: 2 },
@@ -23,7 +28,7 @@ function ButtonCall(props: { isMobile?: boolean; disabled?: boolean; onClick: ()
       <CallIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive variant="solid" arrow placement="right" title={callConversationLegend}>
+    <Tooltip disableInteractive variant="solid" arrow placement="top-start" title={callConversationLegend}>
       <Button
          variant="plain"
         color="neutral"

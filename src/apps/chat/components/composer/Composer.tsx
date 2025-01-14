@@ -833,8 +833,8 @@ export function Composer(props: {
                 maxWidth: {
                   xs: '450px', // Small devices (mobile)
                   sm: '600px', // Medium devices (tablet)
-                  md: '744px', // Large devices (desktop)
-                  lg: '744px', // Larger devices
+                  md: '745px', // Large devices (desktop)
+                  lg: '745px', // Larger devices
                 },
                 justifyContent: 'center',
                 mx: 'auto',

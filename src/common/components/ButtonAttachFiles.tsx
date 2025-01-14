@@ -58,7 +58,7 @@ function ButtonAttachFiles(props: {
       <AttachFileRoundedIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive variant='solid' placement='top-start' title={props.noToolTip ? null : attachFileLegend}>
+    <Tooltip disableInteractive variant='solid' arrow  placement='top-start' title={props.noToolTip ? null : attachFileLegend}>
       <Button
         fullWidth={props.fullWidth}
         variant='plain'

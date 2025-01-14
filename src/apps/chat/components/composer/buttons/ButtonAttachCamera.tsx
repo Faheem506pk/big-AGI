@@ -22,10 +22,15 @@ function ButtonAttachCamera(props: { isMobile?: boolean, onOpenCamera: () => voi
       <AddAPhotoIcon />
     </IconButton>
   ) : (
-    <Tooltip disableInteractive variant='solid' placement='top-start' title={attachCameraLegend(!!props.isMobile)}>
-      <Button variant='plain' color='neutral' onClick={props.onOpenCamera} startDecorator={<CameraAltOutlinedIcon />}
-              sx={{ justifyContent: 'flex-start' }}>
-        Camera
+    <Tooltip disableInteractive variant='solid' arrow placement="top-start"  title={attachCameraLegend(!!props.isMobile)}>
+      <Button variant='plain' color='neutral' onClick={props.onOpenCamera} 
+      // startDecorator={<CameraAltOutlinedIcon />}
+              sx={{
+                //  justifyContent: 'flex-start'
+                paddingInline:'0.5rem'
+               }}>
+                <CameraAltOutlinedIcon />
+        {/* Camera */}
       </Button>
     </Tooltip>
   );

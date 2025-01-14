@@ -54,11 +54,15 @@ function Tile(props: {
       color={(!props.isEditMode && props.isActive) ? 'primary' : props.isHighlighted ? 'primary' : TILE_ACTIVE_COLOR}
       onClick={props.onClick}
       sx={{
-        aspectRatio: 1,
-        height: `${tileSize}rem`,
-        fontWeight: 'md',
-        lineHeight: 'xs',
-        paddingInline: 0.5,
+        // aspectRatio: 1,
+        // height: `${tileSize}rem`,
+        height: props.isEditMode ? `${tileSize}rem` : '2rem',
+        // fontWeight: 'md',
+        // lineHeight: 'xs',
+        // paddingInline: 0.5,
+        // paddingInline: "1rem",
+        width: `auto`,
+        borderRadius: '18px',
         ...((props.isEditMode || !props.isActive) ? {
           boxShadow: `0 2px 8px -3px rgb(var(--joy-palette-${TILE_ACTIVE_COLOR}-darkChannel) / 30%)`,
           // boxShadow: props.isHighlighted
@@ -92,6 +96,7 @@ function Tile(props: {
       {/*<Box sx={{ fontSize: '2rem' }}>*/}
       {/*  {props.symbol}*/}
       {/*</Box>*/}
+      {props.isEditMode && (
       <Avatar
         variant='plain'
         src={props.imageUrl}
@@ -103,9 +108,34 @@ function Tile(props: {
         }}
       >
         {props.symbol}
-      </Avatar>
+      </Avatar> 
+    )}
       <div>
+       {!props.isEditMode && (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 , justifyContent: 'center'}}>
+        
+       
+      <Avatar
+        variant='plain'
+        src={props.imageUrl}
+        sx={{
+          '--Avatar-size': '1rem',
+          fontSize: '1rem',
+          borderRadius: props.imageUrl ? 'sm' : 0,
+          boxShadow: (props.imageUrl && !props.isActive) ? 'sm' : undefined,
+        }}
+      >
+        {props.symbol}
+      </Avatar>
         {props.text}
+        </Box>
+      )}
+      {props.isEditMode && (
+        <>
+        {props.text}
+        </>
+      )}
+       
       </div>
     </Button>
   );
@@ -132,7 +162,8 @@ export function PersonaSelector(props: {
     complexityMode: state.complexityMode,
     showPersonaFinder: state.showPersonaFinder,
   })));
-  const [showExamples, showExamplescomponent] = useChipBoolean('Examples', complexityMode === 'extra' && !props.isMobile);
+  // const [showExamples, showExamplescomponent] = useChipBoolean('Examples', complexityMode === 'extra' && !props.isMobile);
+  const [showExamples, showExamplescomponent] = useChipBoolean('Examples', true);
   const [showPrompt, showPromptComponent] = useChipBoolean('Prompt', false);
   const { systemPurposeId, setSystemPurposeId } = useChatStore(useShallow(state => {
     const conversation = state.conversations.find(conversation => conversation.id === props.conversationId);
@@ -315,7 +346,7 @@ export function PersonaSelector(props: {
         })}
 
         {/* Persona Creator Tile */}
-        {(editMode || !hidePersonaCreator) && (
+        {/* {(editMode || !hidePersonaCreator) && (
           <Tile
             text='Persona Creator'
             symbol='🎭'
@@ -329,7 +360,7 @@ export function PersonaSelector(props: {
               backgroundColor: 'neutral.softDisabledBg',
             }}
           />
-        )}
+        )} */}
 
 
         {/* [row -3] Description */}

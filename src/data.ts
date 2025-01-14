@@ -109,7 +109,7 @@ When asked to design or draw something, please work step by step detailing the c
     voices: { elevenLabs: { voiceId: 'MF3mGyEYCl7XYWbV9V6O' } },
   },
   YouTubeTranscriber: {
-    title: 'YouTube Transcriber',
+    title: 'YouTube',
     description: 'Enter a YouTube URL to get the transcript and chat about the content.',
     systemMessage: 'You are an expert in understanding video transcripts and answering questions about video content.',
     symbol: '📺',

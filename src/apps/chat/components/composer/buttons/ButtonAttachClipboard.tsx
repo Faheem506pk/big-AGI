@@ -19,7 +19,11 @@ export const ButtonAttachClipboardMemo = React.memo(ButtonAttachClipboard);
 
 function ButtonAttachClipboard(props: { isMobile?: boolean; onClick: () => void }) {
   return props.isMobile ? (
-    <IconButton onClick={props.onClick}>
+    <IconButton onClick={props.onClick} sx={{ 
+      // justifyContent: 'flex-start',
+      paddingInline:'0.5rem'
+
+     }}>
       <ContentPasteGoIcon />
     </IconButton>
   ) : (

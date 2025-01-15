@@ -12,7 +12,8 @@ const callConversationLegend = <Box sx={{ px: 1, py: 0.75, lineHeight: '1.5rem' 
 </Box>;
 
 const mobileSx: SxProps = {
-  mr: { xs: 1, md: 2 },
+  // mr: { xs: 1, md: 2 },
+  paddingInline:'0.5rem'
 } as const;
 
 const desktopSx: SxProps = {
@@ -24,7 +25,7 @@ export const ButtonCallMemo = React.memo(ButtonCall);
 
 function ButtonCall(props: { isMobile?: boolean; disabled?: boolean; onClick: () => void }) {
   return props.isMobile ? (
-    <IconButton variant="soft" color="primary" disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
+    <IconButton variant="plain" color="neutral" disabled={props.disabled} onClick={props.onClick} sx={mobileSx}>
       <CallIcon />
     </IconButton>
   ) : (

@@ -54,7 +54,11 @@ function ButtonAttachFiles(props: {
   const handleAttachFilePicker = React.useCallback(() => openFileForAttaching(props.multiple || false, onAttachFiles), [onAttachFiles, props.multiple]);
 
   return props.isMobile ? (
-    <IconButton onClick={handleAttachFilePicker}>
+    <IconButton onClick={handleAttachFilePicker} sx={{ 
+      // justifyContent: 'flex-start',
+      paddingInline:'0.5rem'
+
+     }}>
       <AttachFileRoundedIcon />
     </IconButton>
   ) : (

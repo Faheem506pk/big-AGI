@@ -902,14 +902,19 @@ export function Composer(props: {
                         textarea: {
                           enterKeyHint: enterIsNewline ? 'enter' : 'send',
                           sx: {
-                            ...(recognitionState.isAvailable && { pr: { md: 5 }, px: { md: 1.5 }, pt: { md: 1 } }),
+                            ...(recognitionState.isAvailable && { pr: { md: 5 }, px: { sm:2, md: 1.5 }, pt: { sm:2,  md: 1.5 } }),
                             // mb: 0.5, // no need; the outer container already has enough p (for TokenProgressbar)
+                            
+                             pt: { sm:2,  md: 1.5 }
                           },
                           ref: composerTextAreaRef,
                         },
                       }}
                       sx={{
-                        p: 1,
+                        p: [1, 1, 1],
+                        px: [2, 1, 1],
+                        pt: [2, 0, 0],
+                        // p: 1,
                         borderRadius: '20px',
                         backgroundColor: 'background.level1',
                         // '&:focus-within': { backgroundColor: 'background.popup', '.within-composer-focus': { backgroundColor: 'background.popup' } },
@@ -1255,6 +1260,10 @@ export function Composer(props: {
                               <Menu>
                                 {/* Responsive Open Files button */}
                                 <MenuItem>
+                                <ButtonCallMemo isMobile disabled={noConversation || noLLM} onClick={handleCallClicked} />
+                                </MenuItem>
+
+                                <MenuItem>
                                   <ButtonAttachFilesMemo onAttachFiles={handleAttachFiles} fullWidth multiple />
                                 </MenuItem>
 
@@ -1282,14 +1291,14 @@ export function Composer(props: {
                             {/* [desktop] This column arrangement will have the [desktop] beam button right under call */}
                             <Box sx={isMobile ? { display: 'flex' } : { display: 'grid', gap: 1 }}>
                               {/* [mobile] bottom-corner secondary button */}
-                              {isMobile &&
+                              {/* {isMobile &&
                                 (showChatExtras ? (
                                   <ButtonCallMemo isMobile disabled={noConversation || noLLM} onClick={handleCallClicked} />
                                 ) : isDraw ? (
                                   <ButtonOptionsDraw isMobile onClick={handleDrawOptionsClicked} sx={{ mr: { xs: 1, md: 2 } }} />
                                 ) : (
                                   <IconButton disabled sx={{ mr: { xs: 1, md: 2 } }} />
-                                ))}
+                                ))} */}
 
                               {/* Responsive Send/Stop buttons */}
 

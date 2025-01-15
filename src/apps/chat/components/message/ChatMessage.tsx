@@ -719,6 +719,8 @@ export function ChatMessage(props: {
         {!props.hideAvatar && !isEditingText && (
           // <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
           <Box sx={ messageAsideColumnSx}>
+
+           
             {/* <Box
               onClick={(event) => {
                 

@@ -175,7 +175,7 @@ export function ContentFragments(props: {
       // editing for text parts, tool invocations, or tool responses
       if (props.textEditsState && !!props.setEditedText && (isTextPart(part) || part.pt === 'error' || part.pt === 'tool_invocation' || part.pt === 'tool_response')) {
         return (
-          <Box sx={{width:"730px"}}>
+          <Box sx={{width:"725px"}}>
           <BlockEdit_TextFragment
             key={'edit-' + fId}
             initialText={editText}

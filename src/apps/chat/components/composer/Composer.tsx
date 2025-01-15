@@ -831,8 +831,8 @@ export function Composer(props: {
                 backgroundColor: 'background.level1',
                 borderRadius: '20px',
                 maxWidth: {
-                  xs: '450px', // Small devices (mobile)
-                  sm: '600px', // Medium devices (tablet)
+                  xs: '335px', // Small devices (mobile)
+                  sm: '650px', // Medium devices (tablet)
                   md: '745px', // Large devices (desktop)
                   lg: '745px', // Larger devices
                 },

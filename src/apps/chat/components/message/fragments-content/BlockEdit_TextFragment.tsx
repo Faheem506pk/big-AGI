@@ -108,7 +108,7 @@ export function BlockEdit_TextFragment(props: {
       onChange={handleEditTextChanged}
       onKeyDown={handleEditKeyDown}
       slotProps={enterIsNewline ? textAreaSlotPropsEnter : textAreaSlotPropsDone}
-      
+      sx={{width:"725px"}}
       // endDecorator={props.endDecorator}
     />
   );

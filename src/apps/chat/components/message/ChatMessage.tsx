@@ -81,6 +81,7 @@ import { messageAsideColumnSx, messageAvatarLabelAnimatedSx, messageAvatarLabelS
 import { setIsNotificationEnabledForModel, useChatShowTextDiff } from '../../store-app-chat';
 import { useFragmentBuckets } from './useFragmentBuckets';
 import { useSelHighlighterMemo } from './useSelHighlighterMemo';
+import Image from 'next/image';
 
 // Enable the menu on text selection
 const ENABLE_CONTEXT_MENU = false;
@@ -756,7 +757,7 @@ export function ChatMessage(props: {
             )} */}
             {fromAssistant  && (
               <>
-              <img src="/icons/Icon_Colored.png" alt="" style={{width: 20, height: 20}} />
+              <Image src="/icons/Icon_Colored.png" alt="" width={20} height={20} />
               </>
               )}
           </Box>

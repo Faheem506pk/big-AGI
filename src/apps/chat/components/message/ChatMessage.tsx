@@ -835,7 +835,8 @@ export function ChatMessage(props: {
             <Box
               sx={{
                 height: 20,
-              }}
+                marginBottom:2
+                            }}
               
             >
               {!props.hideAvatar && !isEditingText && (

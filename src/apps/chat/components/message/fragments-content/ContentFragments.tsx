@@ -85,7 +85,7 @@ export function ContentFragments(props: {
   // Content Fragments Edit Zero-State: button to create a new TextContentFragment
   if (isEditingText && !props.fragments.length)
     return (
-      <Button variant='plain' color='neutral' onClick={props.onFragmentBlank} sx={{ justifyContent: 'flex-start' }}>
+      <Button variant='plain' color='neutral' onClick={props.onFragmentBlank} sx={{ justifyContent: 'flex-start', backgroundColor:"red" }}>
         add text ...
       </Button>
     );
@@ -175,6 +175,7 @@ export function ContentFragments(props: {
       // editing for text parts, tool invocations, or tool responses
       if (props.textEditsState && !!props.setEditedText && (isTextPart(part) || part.pt === 'error' || part.pt === 'tool_invocation' || part.pt === 'tool_response')) {
         return (
+          <Box sx={{width:"730px"}}>
           <BlockEdit_TextFragment
             key={'edit-' + fId}
             initialText={editText}
@@ -186,8 +187,10 @@ export function ContentFragments(props: {
             setEditedText={props.setEditedText}
             onSubmit={props.onEditsApply}
             onEscapePressed={props.onEditsCancel}
+            
             // endDecorator='Shift+Enter to save · Ctrl+Shift+Enter to restart · Escape to cancel'
           />
+          </Box>
         );
       }
 

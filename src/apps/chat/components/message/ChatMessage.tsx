@@ -762,17 +762,31 @@ export function ChatMessage(props: {
           </Box>
         )}
 
+         {/* [end-Edit] Fragments Edit: Cancel */}
+         {isEditingText && (
+          <Box  className="msg-edit-button">
+            <Tooltip arrow disableInteractive title="Discard Edits">
+              <IconButton size="sm" variant="solid" onClick={handleEditsCancel}>
+                <CloseRoundedIcon />
+              </IconButton>
+            </Tooltip>
+            {/* <Typography level="body-xs" sx={editButtonWrapSx}>
+              Cancel
+            </Typography> */}
+          </Box>
+        )}
+
         {/* [start-Edit] Fragments Edit: Apply */}
         {isEditingText && (
-          <Box sx={messageAsideColumnSx} className="msg-edit-button">
+          <Box className="msg-edit-button">
             <Tooltip arrow disableInteractive title="Apply Edits">
               <IconButton size="sm" variant="solid" color="warning" onClick={handleEditsApplyClicked}>
                 <CheckRoundedIcon />
               </IconButton>
             </Tooltip>
-            <Typography level="body-xs" sx={editButtonWrapSx}>
+            {/* <Typography level="body-xs" sx={editButtonWrapSx}>
               Done
-            </Typography>
+            </Typography> */}
           </Box>
         )}
 
@@ -933,15 +947,17 @@ export function ChatMessage(props: {
 
         {/* [end-Edit] Fragments Edit: Cancel */}
         {isEditingText && (
-          <Box sx={messageAsideColumnSx} className="msg-edit-button">
-            <Tooltip arrow disableInteractive title="Discard Edits">
+          <Box sx={{marginRight:"17px",
+            ...messageAsideColumnSx
+            }} className="msg-edit-button">
+            {/* <Tooltip arrow disableInteractive title="Discard Edits">
               <IconButton size="sm" variant="solid" onClick={handleEditsCancel}>
                 <CloseRoundedIcon />
               </IconButton>
             </Tooltip>
             <Typography level="body-xs" sx={editButtonWrapSx}>
               Cancel
-            </Typography>
+            </Typography> */}
           </Box>
         )}
       </Box>

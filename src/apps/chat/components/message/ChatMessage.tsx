@@ -578,7 +578,7 @@ export function ChatMessage(props: {
       '--AGI-overlay-start-opacity': uiComplexityMode === 'extra' ? 0.1 : 0,
 
       // style
-      // backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor,
       px: { xs: 1, md: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2 },
       py: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2,
       // filter: 'url(#agi-futuristic-glow)',

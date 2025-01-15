@@ -4,12 +4,10 @@ import type { SxProps } from '@mui/joy/styles/types';
 import { Box, MenuList, styled } from '@mui/joy';
 import { ClickAwayListener, Popper, PopperPlacementType } from '@mui/base';
 
-
 // adds the 'sx' prop to the Popper, and defaults zIndex to 1000
 const Popup = styled(Popper)({
   zIndex: 1000,
 });
-
 
 /**
  * Workaround to the Menu in Joy 5-beta.0.
@@ -21,29 +19,30 @@ const Popup = styled(Popper)({
  *  - ...
  */
 export function CloseablePopup(props: {
-  menu?: boolean, // whether to render as a MenuList (or as a Box otherwise)
-  anchorEl: HTMLElement | null,
-  onClose: () => void,
+  menu?: boolean; // whether to render as a MenuList (or as a Box otherwise)
+  anchorEl: HTMLElement | null;
+  onClose: () => void;
 
   // looks
-  dense?: boolean,
-  bigIcons?: boolean,
+  dense?: boolean;
+  bigIcons?: boolean;
 
-  placement?: PopperPlacementType,
-  maxHeightGapPx?: number,
-  noTopPadding?: boolean,
-  noBottomPadding?: boolean,
-  minWidth?: number,
-  maxWidth?: number,
-  zIndex?: number,
-  sx?: SxProps,
+  placement?: PopperPlacementType;
+  maxHeightGapPx?: number;
+  noTopPadding?: boolean;
+  noBottomPadding?: boolean;
+  minWidth?: number;
+  maxWidth?: number;
+  zIndex?: number;
+  setIsHovering?: (isHovering: boolean) => void;
+  setOpsMenuAnchor?: (anchor: HTMLElement | null) => void;
+  sx?: SxProps;
 
   // unused
-  placementOffset?: number[],
+  placementOffset?: number[];
 
-  children?: React.ReactNode,
+  children?: React.ReactNode;
 }) {
-
   const handleClose = (event: MouseEvent | TouchEvent | React.KeyboardEvent) => {
     event.stopPropagation();
     props.onClose();
@@ -53,46 +52,47 @@ export function CloseablePopup(props: {
     if (event.key === 'Tab') {
       handleClose(event);
     } else if (event.key === 'Escape') {
-      if (props.anchorEl)
-        props.anchorEl?.focus();
+      if (props.anchorEl) props.anchorEl?.focus();
       handleClose(event);
     }
   };
 
-
   // memos
-  const modifiersMemo = React.useMemo(() => [{
-    name: 'offset',
-    options: {
-      offset: props.placementOffset || [0, 4],
-    },
-  }], [props.placementOffset]);
+  const modifiersMemo = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: props.placementOffset || [0, 4],
+        },
+      },
+    ],
+    [props.placementOffset],
+  );
 
-  const styleMemoSx: SxProps = React.useMemo(() => ({
+  const styleMemoSx: SxProps = React.useMemo(
+    () => ({
+      // style
+      backgroundColor: 'background.popup',
+      boxShadow: 'md',
+      ...(props.maxHeightGapPx !== undefined ? { maxHeight: `calc(100dvh - ${props.maxHeightGapPx}px)`, overflowY: 'auto' } : {}),
+      ...(props.maxWidth !== undefined && { maxWidth: props.maxWidth }),
+      ...(props.minWidth !== undefined && { minWidth: props.minWidth }),
 
-    // style
-    backgroundColor: 'background.popup',
-    boxShadow: 'md',
-    ...(props.maxHeightGapPx !== undefined ? { maxHeight: `calc(100dvh - ${props.maxHeightGapPx}px)`, overflowY: 'auto' } : {}),
-    ...(props.maxWidth !== undefined && { maxWidth: props.maxWidth }),
-    ...(props.minWidth !== undefined && { minWidth: props.minWidth }),
+      // MenuList customizations
+      '--ListItem-minHeight': props.dense ? '2.25rem' /* 2.25 is the default */ : '2.5rem' /* we enlarge the default  */,
+      ...(props.bigIcons && {
+        '--Icon-fontSize': 'var(--joy-fontSize-xl2)',
+        // '--ListItemDecorator-size': '2.75rem',
+      }),
+      ...(props.noBottomPadding && { pb: 0 }),
+      ...(props.noTopPadding && { pt: 0 }),
 
-    // MenuList customizations
-    '--ListItem-minHeight': props.dense
-      ? '2.25rem' /* 2.25 is the default */
-      : '2.5rem', /* we enlarge the default  */
-    ...(props.bigIcons && {
-      '--Icon-fontSize': 'var(--joy-fontSize-xl2)',
-      // '--ListItemDecorator-size': '2.75rem',
+      // inject
+      ...(props.sx || {}),
     }),
-    ...(props.noBottomPadding && { pb: 0 }),
-    ...(props.noTopPadding && { pt: 0 }),
-
-    // inject
-    ...(props.sx || {}),
-
-  }), [props.dense, props.bigIcons, props.maxHeightGapPx, props.maxWidth, props.minWidth, props.noBottomPadding, props.noTopPadding, props.sx]);
-
+    [props.dense, props.bigIcons, props.maxHeightGapPx, props.maxWidth, props.minWidth, props.noBottomPadding, props.noTopPadding, props.sx],
+  );
 
   return (
     <Popup
@@ -103,6 +103,13 @@ export function CloseablePopup(props: {
       disablePortal={false}
       modifiers={modifiersMemo}
       sx={props.zIndex ? { zIndex: props.zIndex } : undefined}
+      onMouseEnter={() => {props.setIsHovering?.(true);
+
+      }}
+      onMouseLeave={() => {
+        props.setIsHovering?.(false);
+        props.setOpsMenuAnchor?.(null);
+      }}
     >
       <ClickAwayListener onClickAway={handleClose}>
         {props.menu ? (

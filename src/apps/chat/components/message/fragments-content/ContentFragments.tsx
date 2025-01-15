@@ -64,7 +64,7 @@ export function ContentFragments(props: {
   setEditedText?: (fragmentId: DMessageFragmentId, value: string, applyNow: boolean) => void,
   onEditsApply: (withControl: boolean) => void,
   onEditsCancel: () => void,
-
+  setOpsMenuAnchor?: (anchor: HTMLElement | null) => void;
   onFragmentBlank: () => void
   onFragmentDelete: (fragmentId: DMessageFragmentId) => void,
   onFragmentReplace: (fragmentId: DMessageFragmentId, newFragment: DMessageContentFragment) => void,
@@ -98,7 +98,9 @@ export function ContentFragments(props: {
   if (!props.showEmptyNotice && !props.fragments.length)
     return null;
 
-  return <Box aria-label='message body' sx={(isEditingText || showDataStreamViz) ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx}>
+  return <Box aria-label='message body' sx={(isEditingText || showDataStreamViz) ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx} 
+  onMouseLeave={() => {props.setOpsMenuAnchor?.(null);}}
+  >
 
     {/* Empty Message Block - if empty */}
     {props.showEmptyNotice && (

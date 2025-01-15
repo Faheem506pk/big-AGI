@@ -577,7 +577,7 @@ export function ChatMessage(props: {
       '--AGI-overlay-start-opacity': uiComplexityMode === 'extra' ? 0.1 : 0,
 
       // style
-      backgroundColor: backgroundColor,
+      // backgroundColor: backgroundColor,
       px: { xs: 1, md: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2 },
       py: themeScalingMap[adjContentScaling]?.chatMessagePadding ?? 2,
       // filter: 'url(#agi-futuristic-glow)',
@@ -708,6 +708,9 @@ export function ChatMessage(props: {
       tabIndex={-1 /* for shortcuts navigation */}
       onMouseUp={ENABLE_BUBBLE && !fromSystem /*&& !isAssistantError*/ ? handleBlocksMouseUp : undefined}
       sx={listItemSx}
+     
+      onMouseLeave={() => setOpsMenuAnchor(null)}
+      onMouseEnter={() => setOpsMenuAnchor(null)}
       // className={messagePendingIncomplete ? 'agi-border-4' /* CSS Effect while in progress */ : undefined}
     >
       {/* (Optional) top decorator */}
@@ -718,9 +721,7 @@ export function ChatMessage(props: {
         {/* [start-Avatar] Avatar (Persona) */}
         {!props.hideAvatar && !isEditingText && (
           // <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
-          <Box sx={ messageAsideColumnSx}>
-
-           
+          <Box sx={ messageAsideColumnSx }>
             {/* <Box
               onClick={(event) => {
                 
@@ -806,7 +807,7 @@ export function ChatMessage(props: {
           )}
 
           {/* Content Fragments */}
-          <Box onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+          <Box onMouseEnter={() => {setIsHovering(true); setOpsMenuAnchor?.(null); }} onMouseLeave={() => setIsHovering(false)} >
             <ContentFragments
               fragments={contentOrVoidFragments}
               showEmptyNotice={!messageFragments.length && !messagePendingIncomplete}
@@ -829,11 +830,13 @@ export function ChatMessage(props: {
               onMessageDelete={props.onMessageDelete ? handleOpsDelete : undefined}
               onContextMenu={props.onMessageFragmentReplace && ENABLE_CONTEXT_MENU ? handleBlocksContextMenu : undefined}
               onDoubleClick={props.onMessageFragmentReplace /*&& doubleClickToEdit disabled, as we may have shift too */ ? handleBlocksDoubleClick : undefined}
+              setOpsMenuAnchor={setOpsMenuAnchor}
             />
             <Box
               sx={{
                 height: 20,
               }}
+              
             >
               {!props.hideAvatar && !isEditingText && (
                 <>
@@ -842,6 +845,7 @@ export function ChatMessage(props: {
                       <Box
                         // sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}
                         sx={isEditingText ? editLayoutSx : fromAssistant ? startLayoutSx : endLayoutSx}
+                       
                       >
                         <IconButton onClick={handleOpsCopy} sx={ToolButtonSx} size="sm">
                           <ContentCopyIcon sx={{ fontSize: ButtoniconSx }} />
@@ -879,7 +883,9 @@ export function ChatMessage(props: {
                             // [DEBUG][PROD] shift+click to dump the DMessage
                             event.shiftKey && console.log('message', props.message);
                             handleOpsMenuToggle(event);
+                            setIsHovering(true);
                           }}
+                          onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => {setIsHovering(true);}}
                           onContextMenu={handleOpsMenuToggle}
                           sx={personaAvatarOrMenuSx}
                         >
@@ -960,7 +966,7 @@ export function ChatMessage(props: {
 
       {/* Message Operations Menu (3 dots) */}
       {!!opsMenuAnchor && (
-        <CloseablePopup menu anchorEl={opsMenuAnchor} onClose={handleCloseOpsMenu} dense minWidth={280} placement={fromAssistant ? 'auto-start' : 'auto-end'}>
+        <CloseablePopup menu anchorEl={opsMenuAnchor} onClose={handleCloseOpsMenu} dense minWidth={280} placement={fromAssistant ? 'auto-start' : 'auto-end'} setIsHovering={setIsHovering} setOpsMenuAnchor={setOpsMenuAnchor}>
           {fromSystem && (
             <ListItem>
               <Typography level="body-sm">System message</Typography>

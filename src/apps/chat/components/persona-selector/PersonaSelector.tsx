@@ -119,8 +119,8 @@ function Tile(props: {
         variant='plain'
         src={props.imageUrl}
         sx={{
-          '--Avatar-size': '1rem',
-          fontSize: '1rem',
+          '--Avatar-size': '1.2rem',
+          fontSize: '1.2rem',
           borderRadius: props.imageUrl ? 'sm' : 0,
           boxShadow: (props.imageUrl && !props.isActive) ? 'sm' : undefined,
         }}
@@ -307,7 +307,7 @@ export function PersonaSelector(props: {
         my: 'auto',
         // layout
         display: 'grid',
-        gridTemplateColumns: `repeat(auto-fit, minmax(${tileSize}rem, ${tileSize}rem))`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(9rem, ${tileSize}rem))`,
         justifyContent: 'center', gap: `${tileGap}rem`,
       }}>
 

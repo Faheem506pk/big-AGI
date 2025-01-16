@@ -59,7 +59,7 @@ export const InvertedBar = (props: {
       id={props.id}
       component={props.component}
       variant={isDark ? 'soft' : 'solid'}
-      invertedColors={!isDark ? true : undefined}
+      // invertedColors={!isDark ? true : undefined}
       sx={sx}
     >
       {props.children}

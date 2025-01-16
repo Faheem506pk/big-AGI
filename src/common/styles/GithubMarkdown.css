@@ -54,6 +54,7 @@
   --color-done-fg: #a371f7;
   --color-done-emphasis: #8957e5;
   --color-user-chat: #303030;
+  --color-text-chatgpt: #ECECEC;
 
 }
 
@@ -109,6 +110,7 @@
   --color-done-fg: #8250df;
   --color-done-emphasis: #8250df;
   --color-user-chat: #f3f3f3;
+  --color-text-chatgpt: #0D0D0D;
 }
 
 

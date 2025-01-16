@@ -53,6 +53,7 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
           icon: 'var(--joy-palette-neutral-700)',           // <IconButton color='neutral' /> icon color
           secondary: 'var(--joy-palette-neutral-800)',      // increase contrast a bit
           // tertiary: 'var(--joy-palette-neutral-700)',       // increase contrast a bit
+          tertiary: 'var(--color-text-chatgpt, #0D0D0D)',       // increase contrast a bit
         },
         // popup [white] > surface [50] > level1 [100] > level2 [200] > level3 [300 -> unused] > body [white -> 300]
         background: {
@@ -73,6 +74,7 @@ export const createAppTheme = (uiComplexityMinimal: boolean) => extendTheme({
           // do not increase contrast - text.primary would scream at you
           // secondary: 'var(--joy-palette-neutral-100, #EAEEF6)',
           // tertiary: 'var(--joy-palette-neutral-400, #9FA6AD)',
+          tertiary: 'var(--color-text-chatgpt, #ECECEC)',  
         },
         background: {
           // New

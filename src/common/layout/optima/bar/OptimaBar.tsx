@@ -167,7 +167,11 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
 
     {/* Bar: [Drawer control] [Center Items] [Panel/Menu control] */}
     {/* InvertedBar */}
-    <InvertedBar component={props.component} direction='horizontal' sx={props.sx}>   
+    <Box component={props.component} direction='horizontal' sx={{
+      display: 'flex',
+      p:1,
+      backgroundColor: 'background.backdrop',
+      ...props.sx}}>   
 
       {/* [Mobile] Drawer button */}
       {(props.isMobile || !navIsShown) && (
@@ -207,7 +211,7 @@ export function OptimaBar(props: { component: React.ElementType, currentApp?: Na
         </InvertedBarCornerItem>
       )}
 
-    </InvertedBar>
+    </Box>
 
     {/* Default: Panel render */}
     {!contentToPopup && <RenderAsPanel appMenuItems={panelContent} appName={props.currentApp?.name} isMobile={props.isMobile} />}

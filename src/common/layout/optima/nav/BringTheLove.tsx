@@ -33,7 +33,7 @@ export function BringTheLove(props: { text: string, link: string, asIcon?: boole
           onClick={() => setLoved(true)}
           sx={{
             background: 'transparent',
-            // color: 'text.tertiary',
+            color: 'text.icon',
             '&:hover': {
               animation: `${animationColorRainbow} 5s linear infinite`,
             },

@@ -158,6 +158,7 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
             variant={isActive ? 'soft' : undefined}
             onClick={showModal}
             className={`${navItemClasses.typeLinkOrModal} ${isActive ? navItemClasses.active : ''} ${isAttractive ? navItemClasses.attractive : ''}`}
+           
           >
             {(isActive && item.iconActive) ? <item.iconActive /> : <item.icon />}
           </DesktopNavIcon>
@@ -168,11 +169,15 @@ export function DesktopNav(props: { component: React.ElementType, currentApp?: N
 
 
   return (
+    // InvertedBar
     <InvertedBar
       id='desktop-nav'
       component={props.component}
       direction='vertical'
-      sx={desktopNavBarSx}
+      sx={{
+        backgroundColor: 'background.backdrop',
+        color: 'text.secondary',
+        ...desktopNavBarSx}}
     >
 
       <InvertedBarCornerItem>

@@ -821,7 +821,7 @@ export function Composer(props: {
       {!isMobile && labsShowShortcutBar && <StatusBar toggleMinimized={handleToggleMinimized} isMinimized={isMinimized} />}
       {/* This container is here just to let the potential statusbar fill the whole space, so we moved the padding here and not in the parent */}
       <Box sx={!isMinimized || isMobile || !labsShowShortcutBar ? paddingBoxSx : minimizedSx}>
-        <Grid container onDragEnter={handleContainerDragEnter} onDragStart={handleContainerDragStart} spacing={{ xs: 1, md: 2 }} sx={stableGridSx}>
+        <Grid container onDragEnter={handleContainerDragEnter} onDragStart={handleContainerDragStart} spacing={{ xs: 0, md: 2 }} sx={stableGridSx}>
           {/* [Mobile: top, Desktop: left] */}
           <Grid xs={12} md={12}>
             <Box
@@ -832,9 +832,10 @@ export function Composer(props: {
                 borderRadius: '20px',
                 maxWidth: {
                   xs: '335px', // Small devices (mobile)
-                  sm: '650px', // Medium devices (tablet)
-                  md: '745px', // Large devices (desktop)
+                  sm: '550px', // Medium devices (tablet)
+                  md: '565px', // Large devices (desktop)
                   lg: '745px', // Larger devices
+                  xl: '1045px'
                 },
                 justifyContent: 'center',
                 mx: 'auto',
@@ -1022,7 +1023,7 @@ export function Composer(props: {
                   )}
 
                   {/* [Desktop, Col1] Insert Multi-modal content buttons */}
-                  {isDesktop && (
+                  {isDesktop && ( 
                     <>
                       <Box
                         sx={{

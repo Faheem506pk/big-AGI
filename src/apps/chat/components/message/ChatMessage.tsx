@@ -95,7 +95,14 @@ const messageBodySx: SxProps = {
   display: 'flex',
   alignItems: 'flex-start', // avatars at the top, and honor 'static' position
   gap: { xs: 0, md: 1 },
-  maxWidth: '900px',
+  // maxWidth: '900px',
+  maxWidth: {
+    xs: '335px', // Small devices (mobile)
+    sm: '550px', // Medium devices (tablet)
+    md: '620px', // Large devices (desktop)
+    lg: '900px', // Larger devices
+    xl: '1195px', // Extra-large devices
+  },
   mx: 'auto',
 };
 

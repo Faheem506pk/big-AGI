@@ -22,7 +22,7 @@ import { BlockPartToolResponse } from './BlockPartToolResponse';
 const editLayoutSx: SxProps = {
   display: 'grid',
   gap: 1.5,     // see why we give more space on ChatMessage
-  maxWidth: "744px",
+  
   // horizontal separator between messages (second part+ and before)
   // '& > *:not(:first-of-type)': {
   //   borderTop: '1px solid',
@@ -35,6 +35,13 @@ const startLayoutSx: SxProps = {
   justifyContent: 'flex-start',
   marginRight: 'auto',
   paddingRight: 3,
+  maxWidth: {
+    xs: '335px', // Small devices (mobile)
+    sm: '550px', // Medium devices (tablet)
+    md: '560px', // Large devices (desktop)
+    lg: '745px', // Larger devices
+    xl: '1045px', // Extra-large devices
+  },
 };
 
 const endLayoutSx: SxProps = {
@@ -42,6 +49,13 @@ const endLayoutSx: SxProps = {
   justifyContent: 'flex-end',
   marginLeft: 'auto',
  paddingLeft: 3,
+ maxWidth: {
+  xs: '335px', // Small devices (mobile)
+  sm: '550px', // Medium devices (tablet)
+  md: '550px', // Large devices (desktop)
+  lg: '745px', // Larger devices
+  xl: '945px', // Extra-large devices
+},
 };
 
 

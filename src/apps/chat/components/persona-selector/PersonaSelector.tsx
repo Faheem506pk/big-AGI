@@ -37,6 +37,7 @@ const tileSize = 7; // rem
 const tileGap = 0.5; // rem
 
 
+
 function Tile(props: {
   text?: string,
   imageUrl?: string,
@@ -274,12 +275,18 @@ export function PersonaSelector(props: {
 
   return (
     <Box sx={{
-      maxWidth: '800px',
+      maxWidth: {
+        xs: '330px', // Small devices (mobile)
+        sm: '645px', // Medium devices (tablet)
+        md: '565px', // Large devices (desktop)
+        lg: '744px', // Larger devices
+        xl: '1045px'
+      },
       minWidth: `${2 + 1 + tileSize * 2}rem`, // accomodate at least 2 columns (scroll-x in case)
       mx: 'auto',
       minHeight: '60svh',
       display: 'grid',
-      px: { xs: 0.5, sm: 1, md: 2 },
+      px: { xs: 0.5, sm: 1, md: 2, lg: 2, xl: 2 },
       py: 2,
     }}>
 
@@ -307,7 +314,13 @@ export function PersonaSelector(props: {
         my: 'auto',
         // layout
         display: 'grid',
-        gridTemplateColumns: `repeat(auto-fit, minmax(9rem, ${tileSize}rem))`,
+        gridTemplateColumns: {
+          xs: `repeat(auto-fit, minmax(9rem, ${tileSize}rem))`,
+          sm: `repeat(auto-fit, minmax(10rem, ${tileSize}rem))`,
+          md: `repeat(auto-fit, minmax(rem, ${tileSize}rem))`,
+          lg: `repeat(auto-fit, minmax(7rem, ${tileSize}rem))`,
+          xl: `repeat(auto-fit, minmax(10rem, ${tileSize}rem))`,
+        },
         justifyContent: 'center', gap: `${tileGap}rem`,
       }}>
 

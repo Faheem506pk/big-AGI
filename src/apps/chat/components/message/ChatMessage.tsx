@@ -77,7 +77,7 @@ import { ContentFragments } from './fragments-content/ContentFragments';
 import { DocumentAttachmentFragments } from './fragments-attachment-doc/DocumentAttachmentFragments';
 import { ImageAttachmentFragments } from './fragments-attachment-image/ImageAttachmentFragments';
 import { InReferenceToList } from './in-reference-to/InReferenceToList';
-import { messageAsideColumnSx, messageAvatarLabelAnimatedSx, messageAvatarLabelSx, messageZenAsideColumnSx } from './ChatMessage.styles';
+import { messageLsideColumnSx, messageAsideColumnSx, messageAvatarLabelAnimatedSx, messageAvatarLabelSx, messageZenAsideColumnSx } from './ChatMessage.styles';
 import { setIsNotificationEnabledForModel, useChatShowTextDiff } from '../../store-app-chat';
 import { useFragmentBuckets } from './useFragmentBuckets';
 import { useSelHighlighterMemo } from './useSelHighlighterMemo';
@@ -100,7 +100,7 @@ const messageBodySx: SxProps = {
     xs: '335px', // Small devices (mobile)
     sm: '550px', // Medium devices (tablet)
     md: '620px', // Large devices (desktop)
-    lg: '900px', // Larger devices
+    lg: '990px', // Larger devices
     xl: '1195px', // Extra-large devices
   },
   mx: 'auto',
@@ -729,7 +729,7 @@ export function ChatMessage(props: {
         {/* [start-Avatar] Avatar (Persona) */}
         {!props.hideAvatar && !isEditingText && (
           // <Box sx={zenMode ? messageZenAsideColumnSx : messageAsideColumnSx}>
-          <Box sx={ messageAsideColumnSx }>
+          <Box sx={(isEditingText ) ? editLayoutSx : fromAssistant ?  messageLsideColumnSx : messageAsideColumnSx} >
             {/* <Box
               onClick={(event) => {
                 

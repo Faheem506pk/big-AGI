@@ -39,7 +39,7 @@ const startLayoutSx: SxProps = {
     xs: '335px', // Small devices (mobile)
     sm: '550px', // Medium devices (tablet)
     md: '560px', // Large devices (desktop)
-    lg: '745px', // Larger devices
+    lg: '835px', // Larger devices
     xl: '1045px', // Extra-large devices
   },
 };
@@ -53,7 +53,7 @@ const endLayoutSx: SxProps = {
   xs: '335px', // Small devices (mobile)
   sm: '550px', // Medium devices (tablet)
   md: '550px', // Large devices (desktop)
-  lg: '745px', // Larger devices
+  lg: '800px', // Larger devices
   xl: '945px', // Extra-large devices
 },
 };

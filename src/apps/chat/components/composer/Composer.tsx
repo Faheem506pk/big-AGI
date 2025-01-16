@@ -834,7 +834,7 @@ export function Composer(props: {
                   xs: '335px', // Small devices (mobile)
                   sm: '550px', // Medium devices (tablet)
                   md: '565px', // Large devices (desktop)
-                  lg: '745px', // Larger devices
+                  lg: '845px', // Larger devices
                   xl: '1045px'
                 },
                 justifyContent: 'center',

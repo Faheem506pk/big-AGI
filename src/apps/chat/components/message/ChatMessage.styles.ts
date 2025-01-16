@@ -33,6 +33,30 @@ export const messageAsideColumnSx: SxProps = {
   // filter: 'url(#agi-holographic)',
 
   // flexBasis: 0, // this won't let the item grow
+  minWidth: { xs: 0, md: 20 ,lg:65 ,xl:70},
+  maxWidth: 80,
+  textAlign: 'center',
+  // layout
+
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  gap: 0.25, // 2024-08-24: added, space the avatar icon from the label
+
+  // when with the 'edit-button' class
+  '&.msg-edit-button': {
+    gap: 0.25,
+  },
+};
+export const messageLsideColumnSx: SxProps = {
+  // make this stick to the top of the screen
+  position: 'sticky',
+  top: '0.25rem',
+
+  // style
+  // filter: 'url(#agi-holographic)',
+
+  // flexBasis: 0, // this won't let the item grow
   minWidth: { xs: 0, md: 20 ,lg:70 ,xl:70},
   maxWidth: 80,
   textAlign: 'center',

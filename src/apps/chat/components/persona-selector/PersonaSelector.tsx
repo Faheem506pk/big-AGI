@@ -315,9 +315,9 @@ export function PersonaSelector(props: {
         // layout
         display: 'grid',
         gridTemplateColumns: {
-          xs: `repeat(auto-fit, minmax(9rem, ${tileSize}rem))`,
-          sm: `repeat(auto-fit, minmax(10rem, ${tileSize}rem))`,
-          md: `repeat(auto-fit, minmax(rem, ${tileSize}rem))`,
+          xs: `repeat(auto-fit, minmax(8rem, ${tileSize}rem))`,
+          sm: `repeat(auto-fit, minmax(8rem, ${tileSize}rem))`,
+          md: `repeat(auto-fit, minmax(7rem, ${tileSize}rem))`,
           lg: `repeat(auto-fit, minmax(7rem, ${tileSize}rem))`,
           xl: `repeat(auto-fit, minmax(10rem, ${tileSize}rem))`,
         },
@@ -403,7 +403,14 @@ export function PersonaSelector(props: {
                 sx={{
                   // example items 2-col layout
                   display: 'grid',
-                  gridTemplateColumns: `repeat(auto-fit, minmax(${tileSize * 3 + 1}rem, 1fr))`,
+                  // gridTemplateColumns: `repeat(auto-fit, minmax(${tileSize * 3 + 1}rem, 1fr))`,
+                  gridTemplateColumns: {
+                    xs: `repeat(auto-fit, minmax(${tileSize * 2 + 1}rem, 1fr))`,
+                    sm: `repeat(auto-fit, minmax(${tileSize * 2 + 1}rem, 1fr))`,
+                    md: `repeat(auto-fit, minmax(${tileSize * 3 + 1}rem, 1fr))`,
+                    lg: `repeat(auto-fit, minmax(${tileSize * 3 + 1}rem, 1fr))`,
+                    xl: `repeat(auto-fit, minmax(${tileSize * 3 + 1}rem, 1fr))`,
+                  },
                   gap: 1,
                 }}
               >

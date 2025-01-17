@@ -8,12 +8,12 @@
  */
 export const Brand = {
   Title: {
-    Base: 'alpha-AGI',
-    Common: (process.env.NODE_ENV === 'development' ? '[DEV] ' : '') + 'Alpha-AGI',
+    Base: 'Zaplead',
+    Common: (process.env.NODE_ENV === 'development' ? '[DEV] ' : '') + 'Zaplead',
   },
   Meta: {
-    Description: 'Launch alpha-AGI to unlock the full potential of AI, with precise control over your data and models. Voice interface, AI personas, advanced features, and fun UX.',
-    SiteName: 'alpha-AGI | Precision AI for You',
+    Description: 'Launch Zaplead to unlock the full potential of AI, with precise control over your data and models. Voice interface, AI personas, advanced features, and fun UX.',
+    SiteName: 'Zaplead | Precision AI for You',
     ThemeColor: '#32383E',
     TwitterSite: '@alphabase',
   },
@@ -21,8 +21,8 @@ export const Brand = {
     Home: 'https://alphabase.co',
     // App: 'https://get.big-agi.com',
     CardImage: '',
-    OpenRepo: 'https://github.com/AlphabaseOfficial/alpha-AGI',
-    OpenProject: 'https://github.com/AlphabaseOfficial/alpha-AGI',
+    OpenRepo: 'https://github.com/alphabaseOfficial/Zaplead',
+    OpenProject: 'https://github.com/alphabaseOfficial/Zaplead',
     SupportInvite: '#',
     // Twitter: 'https://www.twitter.com/enricoros',
     Extension: 'https://chromewebstore.google.com/detail/zaplead/dhikhoidbejcgjohpbicofehjfkbhpan',

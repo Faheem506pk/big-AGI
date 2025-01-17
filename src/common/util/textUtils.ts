@@ -19,7 +19,7 @@ export function countLines(text?: string) {
  * This function:
  * - Optionally removes URL schemas (http://, https://, ftp://, etc.)
  * - Handles query parameters by replacing '=' with '-' and '&' with '--'
- * - Replaces non-alphanumeric characters with hyphens
+ * - Replaces non-Zapleadnumeric characters with hyphens
  * - Removes redundant hyphens
  * - Trims leading and trailing hyphens
  * - Converts the result to lowercase
@@ -36,7 +36,7 @@ export function humanReadableHyphenated(text: string, removeSchema: boolean = fa
     .replace(/&/g, '--'); // Replace '&' with '--'
 
   return processed
-    .replace(/[^a-zA-Z0-9]+/g, '-') // Replace non-alphanumeric characters (including spaces) with hyphens
+    .replace(/[^a-zA-Z0-9]+/g, '-') // Replace non-Zapleadnumeric characters (including spaces) with hyphens
     .replace(/-{2,}/g, '-') // Remove redundant hyphens
     .replace(/^-+|-+$/g, '') // Remove leading and trailing hyphens
     .toLowerCase();

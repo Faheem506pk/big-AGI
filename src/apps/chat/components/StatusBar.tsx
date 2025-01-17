@@ -164,7 +164,7 @@ export function StatusBar(props: { toggleMinimized?: () => void, isMinimized?: b
       // (Hack) If the description is 'Beam', it goes last
       if (a.description === 'Beam Edit')
         return 1;
-      // alphabetical for the rest
+      // Zapleadbetical for the rest
       return a.key.localeCompare(b.key);
     });
     return visibleShortcuts;

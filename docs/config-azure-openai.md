@@ -1,17 +1,17 @@
-# Configuring Azure OpenAI Service with `alpha-AGI`
+# Configuring Azure OpenAI Service with `Zaplead`
 
 The entire procedure takes about 5 minutes and involves creating an Azure account,
-setting up the Azure OpenAI service, deploying models, and configuring `alpha-AGI`
+setting up the Azure OpenAI service, deploying models, and configuring `Zaplead`
 to access these models.
 
 Please note that Azure operates on a 'pay-as-you-go' pricing model and requires
 credit card information tied to a 'subscription' to the Azure service.
 
-## Configuring `alpha-AGI`
+## Configuring `Zaplead`
 
-If you have an `API Endpoint` and `API Key`, you can configure alpha-AGI as follows:
+If you have an `API Endpoint` and `API Key`, you can configure Zaplead as follows:
 
-1. Launch the `alpha-AGI` application
+1. Launch the `Zaplead` application
 2. Go to the **Models** settings
 3. Add a Vendor and select **Azure OpenAI**
     - Enter the Endpoint (e.g., 'https://your-openai-api-1234.openai.azure.com/')

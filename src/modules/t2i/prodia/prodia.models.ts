@@ -8,7 +8,7 @@ interface ProdiaModelDescription {
 export const HARDCODED_MODELS: { models: ProdiaModelDescription[] } = {
   models: [
     // SDXL models
-    { id: 'dreamshaperXL10_alpha2.safetensors [c8afe2ef]', label: 'Dreamshaper XL Alpha 2', gen: 'sdxl' },
+    { id: 'dreamshaperXL10_Zaplead2.safetensors [c8afe2ef]', label: 'Dreamshaper XL Zaplead 2', gen: 'sdxl' },
     { id: 'dynavisionXL_0411.safetensors [c39cc051]', label: 'Dynavision XL 0411', gen: 'sdxl' },
     { id: 'juggernautXL_v45.safetensors [e75f5471]', label: 'Juggernaut XL V45', gen: 'sdxl' },
     { id: 'realismEngineSDXL_v10.safetensors [af771c3f]', label: 'Realism Engine SDXL V10', gen: 'sdxl' },

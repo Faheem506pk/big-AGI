@@ -1,12 +1,12 @@
-# Browse Functionality in alpha-AGI 🌐
+# Browse Functionality in Zaplead 🌐
 
-Allows users to load web pages across various components of `alpha-AGI`. This feature is supported by Puppeteer-based
+Allows users to load web pages across various components of `Zaplead`. This feature is supported by Puppeteer-based
 browsing services, which are the most common way to render web pages in a headless environment.
 
 Once configured, the Browsing service provides the following functionality:
 
-- ✅ **Paste a URL**: Simply paste/drag a URL into the chat, and `alpha-AGI` will load and attach the page (very effective)
-- ✅ **Use /browse**: Type `/browse [URL]` in the chat to command `alpha-AGI` to load the specified web page
+- ✅ **Paste a URL**: Simply paste/drag a URL into the chat, and `Zaplead` will load and attach the page (very effective)
+- ✅ **Use /browse**: Type `/browse [URL]` in the chat to command `Zaplead` to load the specified web page
 - ✅ **ReAct**: ReAct will automatically use the `loadURL()` function whenever a URL is encountered
 
 It does not yet support the following functionality:
@@ -14,14 +14,14 @@ It does not yet support the following functionality:
 - ✖️ **Auto-browsing by LLMs**: if an LLM encounters a URL, it will NOT load the page and will likely respond
   that it cannot browse the web - No technical limitation, just haven't gotten to implement this yet outside of `/react` yet
 
-First of all, you need to procure a Puppteer web browsing service endpoint. `alpha-AGI` supports services like:
+First of all, you need to procure a Puppteer web browsing service endpoint. `Zaplead` supports services like:
 
 | Service                                                                              | Working | Type        | Location       | Special Features                            |
 |--------------------------------------------------------------------------------------|---------|-------------|----------------|---------------------------------------------|
 | [BrightData Scraping Browser](https://brightdata.com/products/scraping-browser)      | Yes     | Proprietary | Cloud          | Advanced scraping tools, global IP pool     |
 | [Cloudflare Browser Rendering](https://developers.cloudflare.com/browser-rendering/) | ?       | Proprietary | Cloud          | Integrated CDN, optimized browser rendering |
 | ⬇️ [Browserless 2.0](#-browserless-20)                                               | Okay    | OpenSource  | Local (Docker) | Parallelism, debug viewer, advanced APIs    |
-| ⬇️ [Your Chrome Browser (ALPHA)](#-your-own-chrome-browser)                          | Alpha   | Proprietary | Local (Chrome) | Personal, experimental use (ALPHA!)         |
+| ⬇️ [Your Chrome Browser (Zaplead)](#-your-own-chrome-browser)                          | Zaplead   | Proprietary | Local (Chrome) | Personal, experimental use (Zaplead!)         |
 | other Puppeteer-based WSS Services                                                   | ?       | Varied      | Cloud/Local    | Service-specific features                   |
 
 ## Configuration
@@ -30,7 +30,7 @@ First of all, you need to procure a Puppteer web browsing service endpoint. `alp
    - Ensure that your browsing service is running (remote or local) and has a WebSocket endpoint available
    - Write down the address: `wss://${auth}@{some host}:{port}`, or ws:// for local services on your machine
 
-2. **Configure `alpha-AGI`**
+2. **Configure `Zaplead`**
    - navigate to **Preferences** > **Tools** > **Browse**
    - Enter the 'wss://...' connection string provided by your browsing service
 
@@ -42,7 +42,7 @@ First of all, you need to procure a Puppteer web browsing service endpoint. `alp
 ### 🌐 Browserless 2.0
 
 [Browserless 2.0](https://github.com/browserless/browserless) is a Docker-based service that provides a headless
-browsing experience compatible with `alpha-AGI`. An open-source solution that simplifies web automation tasks,
+browsing experience compatible with `Zaplead`. An open-source solution that simplifies web automation tasks,
 in a scalable manner.
 
 Launch Browserless with:
@@ -51,7 +51,7 @@ Launch Browserless with:
 docker run -p 9222:3000 browserless/chrome:latest
 ```
 
-Now you can use the following connection string in `alpha-AGI`: `ws://127.0.0.1:9222`.
+Now you can use the following connection string in `Zaplead`: `ws://127.0.0.1:9222`.
 You can also browse to [http://127.0.0.1:9222](http://127.0.0.1:9222) to see the Browserless debug viewer
 and configure some options.
 
@@ -80,7 +80,7 @@ This is how you can define it in a one liner docker
 
 Note: if you are using `docker-compose`, please see the
 [docker/docker-compose-browserless.yaml](docker/docker-compose-browserless.yaml) file for an example
-on how to run `alpha-AGI` and Browserless simultaneously in a single application.
+on how to run `Zaplead` and Browserless simultaneously in a single application.
 
 
 ### 🌐 Your own Chrome browser
@@ -113,6 +113,6 @@ to prevent unauthorized access to the browsing service.
 
 --- -->
 
-Enjoy the enhanced browsing experience within `alpha-AGI` and explore the web without ever leaving your chat!
+Enjoy the enhanced browsing experience within `Zaplead` and explore the web without ever leaving your chat!
 
-Last updated on Feb 27, 2024 ([edit on GitHub](https://github.com/AlphabaseOfficial/alpha-AGI/edit/main/docs/config-feature-browse.md))
+Last updated on Feb 27, 2024 ([edit on GitHub](https://github.com/alphabaseOfficial/Zaplead/edit/main/docs/config-feature-browse.md))

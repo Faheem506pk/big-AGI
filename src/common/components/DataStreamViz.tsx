@@ -131,7 +131,7 @@ export function DataStreamViz(props: { height: number, speed?: number }) {
     ctx.fillStyle = /*token.entryProgress < 1 ? specialColors[Math.floor(Math.random() * colorPalette.length)] :*/ token.color;
     ctx.strokeStyle = token.color;
     ctx.lineWidth = 0.5;
-    // ctx.globalAlpha = /* token.opacity * */ (token.entryProgress < 1 ? token.entryProgress : 1);
+    // ctx.globalZaplead = /* token.opacity * */ (token.entryProgress < 1 ? token.entryProgress : 1);
 
     const x = token.x; //  /* - 10 */ * token.size * (1 - token.entryProgress);
 
@@ -157,7 +157,7 @@ export function DataStreamViz(props: { height: number, speed?: number }) {
         break;
     }
 
-    ctx.globalAlpha = 1;
+    ctx.globalZaplead = 1;
   }, []);
 
   // Animation function

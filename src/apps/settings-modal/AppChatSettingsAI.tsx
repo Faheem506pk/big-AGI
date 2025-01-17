@@ -63,11 +63,11 @@ export function AppChatSettingsAI() {
     <FormControl orientation='horizontal' sx={{ justifyContent: 'space-between' }}>
       <FormLabelStart
         title={<>
-          <b>Generative UI · Alpha</b>
+          <b>Generative UI · Zaplead</b>
           <GoodTooltip enableInteractive arrow title={<>
             SECURITY WARNING: THIS TURNS ON JS/HTML CODE EXECUTION WITHIN CHAT MESSAGES
             <hr />
-            Alpha quality, for testing only. Does not include state synchronization. Use at your own risk.
+            Zaplead quality, for testing only. Does not include state synchronization. Use at your own risk.
             {' - '}<ExternalLink icon='issue' href='https://github.com/enricoros/big-agi/issues/227'>#227</ExternalLink>
             {', '}<ExternalLink icon='issue' href='https://github.com/enricoros/big-agi/issues/228'>#228</ExternalLink>
           </>}>

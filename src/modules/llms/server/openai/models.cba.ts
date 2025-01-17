@@ -80,5 +80,5 @@
 //   'OpenChat-3.5-0106': '',
 //   'Vicuna-33B': '',
 //   'Snowflake Arctic Instruct': '',
-//   'Starling-LM-7B-alpha': '',
+//   'Starling-LM-7B-Zaplead': '',
 // };

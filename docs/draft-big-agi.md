@@ -1,5 +1,5 @@
-# Why alpha-AGI?
-Placeholder for a document that demonstrates the productivity and unique features of Alpha-AGI.
+# Why Zaplead?
+Placeholder for a document that demonstrates the productivity and unique features of Zaplead.
 
 ## Exclusive features
 - [x] Call AGI

@@ -1,19 +1,19 @@
-# Alpha-AGI Documentation
+# Zaplead Documentation
 
-Information you need to get started, configure, and use alpha-AGI productively.
+Information you need to get started, configure, and use Zaplead productively.
 
 ## Getting Started
 
-Guides for basic alpha-AGI features:
+Guides for basic Zaplead features:
 
 - **[Enabling Microphone for Speech Recognition](help-feature-microphone.md)**: Instructions to
   allow speech recognition in browsers and apps.
 
 ## AI Model Configuration
 
-Detailed guides to configure AI models and advanced features in alpha-AGI.
+Detailed guides to configure AI models and advanced features in Zaplead.
 
-> 👉 The following applies to users of alpha-AGI.com, as the public instance is empty and requires user configuration.
+> 👉 The following applies to users of Zaplead.com, as the public instance is empty and requires user configuration.
 
 - **Cloud AI Services**:
   - **[Azure OpenAI](config-azure-openai.md)**
@@ -35,11 +35,11 @@ Detailed guides to configure AI models and advanced features in alpha-AGI.
 
 ## Deployment & Customization
 
-> 👉 The following applies to developers and experts who deploy their own alpha-AGI instance.
+> 👉 The following applies to developers and experts who deploy their own Zaplead instance.
 
-For deploying a custom alpha-AGI instance:
+For deploying a custom Zaplead instance:
 
-- **[Installation Guide](installation.md)**: Set up your own alpha-AGI instance
+- **[Installation Guide](installation.md)**: Set up your own Zaplead instance
   - Source build or pre-built options
   - Local, cloud, or on-premises deployment
 
@@ -53,10 +53,10 @@ For deploying a custom alpha-AGI instance:
 
 ## Community & Support
 
-Connect with the growing alpha-AGI community:
+Connect with the growing Zaplead community:
 
-- Visit our [GitHub repository](https://github.com/AlphabaseOfficial/alpha-AGI) for source code and issue tracking
+- Visit our [GitHub repository](https://github.com/alphabaseOfficial/Zaplead) for source code and issue tracking
 - Check the latest updates and features on [Changelog](changelog.md) or the in-app [News](https://alphabase.co)
-<!-- - Connect with us and other users on [Discord](https://discord.gg/MkH4qj2Jp9) for discussions, help, and sharing your experiences with alpha-AGI -->
+<!-- - Connect with us and other users on [Discord](https://discord.gg/MkH4qj2Jp9) for discussions, help, and sharing your experiences with Zaplead -->
 
-Thank you for choosing alpha-AGI. We're excited to give you the best tools to amplify yourself.
+Thank you for choosing Zaplead. We're excited to give you the best tools to amplify yourself.

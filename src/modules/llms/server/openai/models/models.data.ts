@@ -287,7 +287,7 @@ export function openRouterModelFamilySortFn(a: { id: string }, b: { id: string }
   const aPrefixIndex = orModelFamilyOrder.findIndex(prefix => a.id.startsWith(prefix));
   const bPrefixIndex = orModelFamilyOrder.findIndex(prefix => b.id.startsWith(prefix));
 
-  // If both have a prefix, sort by prefix first, and then alphabetically
+  // If both have a prefix, sort by prefix first, and then Zapleadbetically
   if (aPrefixIndex !== -1 && bPrefixIndex !== -1)
     return aPrefixIndex !== bPrefixIndex ? aPrefixIndex - bPrefixIndex : b.id.localeCompare(a.id);
 
